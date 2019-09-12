@@ -1,0 +1,46 @@
+<body>
+    <section id="portfolio">
+        <div class="container-fluid p-0">
+            <div class="row">
+            {% for food in foods %}
+            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 headerImage text-center">
+                <a class="portfolio-box" href="{{ food.picture }}">
+                  <img class="image" src="{{ food.picture }}" alt="{{ food.name }}">
+                    <div class="portfolio-box-caption">
+                        <div class="project-category text-white-50">
+                          {{ food.category_tags1 }}
+                        </div>
+                        <div class="project-name">
+                        {{ food.name }}
+                        </div>
+                    </div>
+                </a>
+                {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+    <section id="portfolio">
+        <div class="container-fluid p-0">
+            <div class="row">
+            {% for food in sub_foods %}
+            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 headerImage mx-auto text-center">
+                <a class="portfolio-box" href="{{ food.picture }}">
+                  <img class="image" src="{{ food.picture }}" alt="{{ food.name }}">
+                    <div class="portfolio-box-caption">
+                        <div class="project-category text-white-50">
+                          {{ food.category_tags1 }}
+                        </div>
+                        <div class="project-name">
+                        {{ food.name }}
+                        </div>
+                    </div>
+                </a>
+                {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+            </div>
+            {% endfor %}
+            </div>
+        </div>
+    </section>
+</body>

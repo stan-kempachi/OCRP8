@@ -1,0 +1,9 @@
+{% extends 'pbeurre/base.html' %}
+
+    <title>{% block title%} youhou error 404 {%endblock%}</title>
+
+{% block body %}
+    <h1>Error 404</h1>
+
+    <p> In seems like you're lost. Go back to the <a href="{% url 'index' %}">homepage</a>.</p>
+{% endblock body %}
