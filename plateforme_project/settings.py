@@ -1,4 +1,5 @@
 import os
+import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -12,6 +13,9 @@ SECRET_KEY = '4bf8zx8t^se760vf#$sm^p_%j=*i=nccqjb#kp(2ug+6e51_(*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
 
 ALLOWED_HOSTS = []
 
