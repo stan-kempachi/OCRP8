@@ -1,10 +1,8 @@
 import os
-import django_heroku
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
+
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
 
@@ -15,7 +13,7 @@ SECRET_KEY = '4bf8zx8t^se760vf#$sm^p_%j=*i=nccqjb#kp(2ug+6e51_(*'
 DEBUG = True
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
 
 ALLOWED_HOSTS = []
 
@@ -34,7 +32,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
-    'django.middleware.security.SecurityMiddleware',
+    'django.middleware.security.SecurityMiddleware'
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -42,6 +40,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+
 ]
 
 ROOT_URLCONF = 'plateforme_project.urls'
@@ -63,8 +62,7 @@ TEMPLATES = [
 ]
 
 TEMPLATE_DIRS = (
-    'C:/Users/stan/PycharmProjects/plateforme_project/pbeurre/templates',
-    '/plateforme_project/pbeurre/templates',
+    '/OCRP8/pbeurre/templates',
 )
 
 WSGI_APPLICATION = 'plateforme_project.wsgi.application'
@@ -116,6 +114,10 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_URL = '/static/'
+
 
 INTERNAL_IPS = [
     '127.0.0.1',
