@@ -1,2 +1,2 @@
-web: gunicorn pbeurre:app --timeout 10
+web: gunicorn pbeurre:app
 heroku config:set WEB_CONCURRENCY=3

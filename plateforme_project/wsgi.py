@@ -11,5 +11,5 @@ import os
 
 from django.core.wsgi import get_wsgi_application
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'OCRP8.settings')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'plateforme_project.settings')
 application = get_wsgi_application()
