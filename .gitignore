@@ -3,5 +3,3 @@ env/
 pbeurre/migrations
 __pycache__/
 plateforme_project/__pycache__/
-static/pbeurre/.gitignore
-static/pbeurre/.travis.yml
