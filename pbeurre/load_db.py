@@ -74,10 +74,6 @@ def load_category():
                     for data in data_from_cat["products"]:
                         try:
                             category = cl.Categories(data)
-                            # if "en:" in elt or "fr:" in elt or "de:" in elt or "es:" \
-                            #         in elt or "it:" in elt:
-                            #     pass
-                            # else:
                             models.Category.objects.create(id=category.id, name=elt, picture=category.picture)
                         except (django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
                             pass
@@ -108,18 +104,18 @@ def load_product():
                     if name in data["categories"]:
                         try:
                             food = cl.Food(data)
-                            # category = food.category_tags.split(",")
                             models.Food.objects.create(name=food.name,
                                                        category_tags1=name,
                                                        category_tags2=food.category,
                                                        nutri_score=food.nutri_score,
-                                                       repere_100g=food.repere_100g,
+                                                       repere_fat100g=food.repere_fat100g,
+                                                       repere_saltunit=food.repere_saltvalue,
+                                                       repere_sugars100g=food.repere_sugars100g,
+                                                       repere_saturatedfat100g=food.repere_saturatedfat100g,
                                                        picture=food.picture,
                                                        url=food.url,
-                                                       stores=food.stores
-                                                        )
+                                                       stores=food.stores)
                         except(django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
-                            # print("Ce produit n'a put être récupéré:  {}".format(food.name))
                             pass
                     else:
                         pass

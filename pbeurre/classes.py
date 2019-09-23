@@ -42,10 +42,21 @@ class Food():
             except KeyError:
                 pass
             try:
-                self.repere_100g = {(data_from_off["nutriments"]["fat_100g"]) + (data_from_off["nutriments"]["salt_unit"])\
-                + (data_from_off["nutriments"]["saturated-fat_100g"]) + (data_from_off["nutriments"]["sugars_100g"])}
+                self.repere_sugars100g = data_from_off["nutriments"]["sugars_100g"]
             except KeyError:
-                self.repere_100g = "None"
+                self.repere_sugars100g = "None"
+            try:
+                self.repere_fat100g = data_from_off["nutriments"]["fat_100g"]
+            except KeyError:
+                self.repere_fat100g = "None"
+            try:
+                self.repere_saltvalue = data_from_off["nutriments"]["salt_value"]
+            except KeyError:
+                self.repere_saltvalue = "None"
+            try:
+                self.repere_saturatedfat100g = data_from_off["nutriments"]["saturated-fat_100g"]
+            except KeyError:
+                self.repere_saturatedfat100g = "None"
             try:
                 self.picture = data_from_off["image_url"]
             except KeyError:
@@ -66,7 +77,10 @@ class Food():
             self.id = data_from_off
             self.tags = data_from_off
             self.nutri_score = data_from_off
-            self.repere_100g = data_from_off["nutriments"]
+            self.repere_sugars100g = "None"
+            self.repere_fat100g = "None"
+            self.repere_saltvalue = "None"
+            self.repere_saturatedfat100g = "None"
             self.picture = data_from_off
             self.stores = ""
             try:

@@ -32,11 +32,11 @@
 }
 
 #ratatouille{
-  height: 200px;
+  height: 400px;
 }
 
 #colette{
-  height: 200px;
+  height: 400px;
 }
 
 #login{
@@ -51,6 +51,16 @@
   height: 350px;
   width: 200px;
 }
+
+
+#food-name{
+  font-size: large;
+  font-family: monospace;
+  position: relative;
+  color: #e25f40;
+  top:2.5ch;
+}
+
 .addmargintop{
   padding-top: 70px;
 }
@@ -98,6 +108,7 @@
 }
 
 .image{
+  position: relative;
   max-height: 300px;
   max-width: 300px;
 }
@@ -230,4 +241,45 @@
 
 #footer {
     position: fixed;
+}
+
+#champsearch {
+  background-color: #e5e5e5;
+}
+#nutri_score {
+  z-index: 3;
+  color: #FFFFFF;
+  background-color: #67aec4;
+  position: absolute;
+  border-color: #dadada;
+  border-style: solid;
+  border-radius: 25px;
+  top: 0;
+  right:18%;
+  width: 5ch;
+  padding: 10px;
+}
+
+#text-food {
+  background-color: rgba(92, 92, 92, 0.5);
+  opacity: 50%;
+}
+
+#background-food-image {
+  image-orientation: initial;
+}
+
+#food-image {
+  z-index: 2;
+  border: 2px solid #808991;
+}
+
+#table100g {
+  position: absolute;
+  bottom: 0;
+  right: 40%;
+}
+
+#nutri-image {
+  right: -10em;
 }

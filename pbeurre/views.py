@@ -28,7 +28,6 @@ def search(request):
             sub_foods = Food.objects.all()[:12]
             if not foods.exists():
                 print("not food exists")
-
         else:
             foods = Food.objects.filter(Q(name__icontains=query))[:1]
             sub_foods = Food.objects.filter(Q(name__icontains=query))[:12]
@@ -38,6 +37,14 @@ def search(request):
         }
         return render(request, 'pbeurre/search.html', context)
 
+
+
+def details(request, food_id):
+    form = SearchForm(request.POST)
+    food = Food.objects.get(id=food_id)
+    return render(request, 'pbeurre/details.html',
+                  {'food': food,
+                   'form': form, })
 
 # def search(request):
 #     if request.method == 'POST':
@@ -63,56 +70,5 @@ def search(request):
 #     return render(request, 'pbeurre/search.html', {'foods':foods,
 #                                                    'substitute': sub_foods,
 #                                                    'form': form})
-
-
-def details(request):
-    query = "velouté"
-    foods = Food.objects.filter(Q(name__icontains=query))[:1]
-    return render(request,'pbeurre/details.html',{'foods':foods })
-
-
-# def listing(request):
-#     foods = Food.objects.filter(nutri_score=("a" or "b"or "c")).order_by('name')[:12]
-#     formatted_foods = ["<li>{}</li>".format(food.name) for food in foods]
-#     return HttpResponse(formatted_foods)
-
-
-# def search(request):
-#     form = SearchForm(request.POST)
-#     if request.method == 'POST':
-#         form = SearchForm(request.POST)
-#
-#         if form.is_valid():
-#             query = form.cleaned_data['search']
-#
-#             foods = Food.objects.filter(Q(name__icontains=query)
-#                                        & Q(nutri_score='e') |
-#                                        Q(name__icontains=query) &
-#                                        Q(nutri_score='d'))[:1]
-#             """substitute method"""
-            # if foods:
-            #     sub_food = Food.objects.filter(Q(name__icontains=query)
-            #                                           & Q(nutri_score='a') |
-            #                                           Q(name__icontains=query)
-            #                                           & Q(nutri_score='b'))[:6]
-            #     if request.user.is_authenticated():
-            #         user = request.user
-            #         favori = Food.objects.filter(favourite__user_id=user.id)
-            #         print(favori)
-            #     else:
-            #         favori = []
-            # else:
-            #     sub_food = []
-            #     favori = []
-
-    #     else:
-    #         return redirect('/')
-    # else:
-    #     return redirect('/')
-    #
-    # return render(request, 'pbeurre/search.html', {'food': foods,
-    #                                                       'form': form})
-
-
 
 

@@ -13,6 +13,8 @@
   {% load static %}
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="{% static 'pbeurre/img/logo_pur_beurre-favicon.png'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pbeurre/css/icons.css'%}">
+
 
   <!-- Bootstrap core CSS -->
   <link href="{% static 'pbeurre/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
@@ -44,9 +46,13 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-          <form class="form-inline" method="post">
-            <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" value="submit">Chercher</button>
-          </form>
+            <form class="form-inline" action="{% url 'search' %}" method="post" accept-charset="utf-8">{% csrf_token %}
+                    <div class="form-inline">
+                        <input id="champsearch" type="text"  aria-label="search" aria-describedby="submit"
+                               placeholder="Recherche" size="10" name="query">
+                        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" value="submit">Chercher</button>
+                    </div>
+              </form>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger"><i class="fas fa-user"></i></a>
           </li>
@@ -68,9 +74,10 @@
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-8 text-center">
-          <h2 class="mt-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contactez Nous!</font></font></h2>
+          <h2 class="mt-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contactez Nous !</font></font></h2>
           <hr class="divider my-4">
-          <p class="text-muted mb-5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vous avez des questions? N'Hesitez pas a nous contacter !</font></font></p>
+          <p class="text-muted mb-5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vous avez des questions ?
+              <br>N'hésitez pas à nous contacter !</font></font></p>
         </div>
       </div>
       <div class="row">
@@ -81,7 +88,7 @@
         <div class="col-lg-4 mr-auto text-center">
           <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
           <!-- Make sure to change the email address in anchor text AND the link below! -->
-          <a class="d-block" href="mail@mail.com"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">mail@mail.com</font></font></a>
+          <a class="d-block" href="pbeurre@mail.com"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">pbeurre@mail.com</font></font></a>
         </div>
       </div>
     </div>

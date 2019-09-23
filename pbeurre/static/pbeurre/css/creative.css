@@ -2936,14 +2936,19 @@ fieldset:disabled a.btn {
 }
 
 .btn-outline-secondary {
-  color: #6c757d;
-  border-color: #6c757d;
+  color: #ffffff;
+  background-color: #858e96;
 }
+
+#mainNav.navbar-scrolled .btn-outline-secondary {
+  color: #ffffff;
+  background-color: #858e96;
+}
+
 
 .btn-outline-secondary:hover {
   color: #fff;
   background-color: #6c757d;
-  border-color: #6c757d;
 }
 
 .btn-outline-secondary:focus, .btn-outline-secondary.focus {
@@ -4372,7 +4377,7 @@ input[type="button"].btn-block {
 
 .nav-tabs .nav-link.active,
 .nav-tabs .nav-item.show .nav-link {
-  color: #495057;
+  color: #e5e5e5;
   background-color: #fff;
   border-color: #dee2e6 #dee2e6 #fff;
 }
@@ -10641,7 +10646,7 @@ hr.light {
   }
   #mainNav .navbar-brand {
     font-weight: 700;
-    color: #FFFFFF;
+    color: #000000;
   }
   #mainNav .navbar-brand:hover {
     color: #fff;
