@@ -32,25 +32,33 @@
 }
 
 #ratatouille{
-  height: 200px;
+  height: 400px;
 }
 
 #colette{
-  height: 200px;
+  height: 400px;
 }
 
 #login{
   height: 97vh;
 }
 
-#substitute{
-  padding: 0 !important;
 }
 
 #image{
   height: 350px;
   width: 200px;
 }
+
+
+#food-name{
+  font-size: large;
+  font-family: monospace;
+  position: relative;
+  color: #e25f40;
+  top:2.5ch;
+}
+
 .addmargintop{
   padding-top: 70px;
 }
@@ -90,14 +98,8 @@
   background-color: white;
 }
 
-.productImg{
-  height: 100%;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
 .image{
+  position: relative;
   max-height: 300px;
   max-width: 300px;
 }
@@ -106,45 +108,11 @@
   border-radius: 5px;
   }
 
-.favProduct{
-  height: 30vh;
-  width: auto;
-  margin-top: 20px;
-}
 
-.favProduct img{
-  height: 50%;
-  border-radius: 10px;
-}
-
-.nutriscore{
-  color: #f05f40;
-  background-color: white;
-  border: 2px solid white;
-  border-radius: 10px;
-  padding: 4px;
-  text-decoration: none;
-}
-
-.nutriscore:hover, .nutriscore:active{
+#nutri_score:hover, .nutri_score:active{
   color: white;
   background-color: #f05f40;
   text-decoration: none;
-}
-
-
-#note{
-  position: absolute;
-  right: 5%;
-  top: -5%;
-  transform: translate(-5%, 5%);
-  width: 25px;
-  height: 25px;
-  background-color: white;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 50%;
-  border-color: black;
 }
 
 #favorite{
@@ -152,9 +120,6 @@
   height: 100vh;
 }
 
-#remplacement{
-  margin-top: 10px;
-}
 
 .backgroundForm{
   width: 350px;
@@ -171,12 +136,6 @@
   transform: translate(-50%, -50%);
 }
 
-.backgroundForm{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
 .loginInput{
   border: 1px solid grey;
@@ -217,9 +176,6 @@
   transition-duration: .5s;
 }
 
-.productPaper{
-  padding-top: 20px;
-}
 
 .openfoodfacts{
   background-color: black;
@@ -230,4 +186,45 @@
 
 #footer {
     position: fixed;
+}
+
+#champsearch {
+  background-color: #e5e5e5;
+}
+#nutri_score {
+  z-index: 3;
+  color: #FFFFFF;
+  background-color: #67aec4;
+  position: absolute;
+  border-color: #dadada;
+  border-style: solid;
+  border-radius: 25px;
+  top: 0;
+  right:18%;
+  width: 5ch;
+  padding: 10px;
+}
+
+#text-food {
+  background-color: rgba(92, 92, 92, 0.5);
+  opacity: 50%;
+}
+
+#background-food-image {
+  image-orientation: initial;
+}
+
+#food-image {
+  z-index: 2;
+  border: 2px solid #808991;
+}
+
+#table100g {
+  position: absolute;
+  bottom: 0;
+  right: 40%;
+}
+
+#nutri-image {
+  right: -10em;
 }
