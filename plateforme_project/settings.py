@@ -124,7 +124,7 @@ INTERNAL_IPS = [
 if os.environ.get('ENV') == 'PRODUCTION':
     STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
-    STATIC_URL = '/staticfiles/'
+    STATIC_URL = '/static/'
     db_from_env = dj_database_url.config(conn_max_age=500)
     DATABASES['default'].update(db_from_env)
     # Simplified static file serving.
