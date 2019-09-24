@@ -4774,7 +4774,7 @@ input[type="button"].btn-block {
 
 .navbar-light .navbar-brand {
   color: rgba(0, 0, 0, 0.9);
-  text-shadow: #ffffff 1px 1px, #ffffff -1px 1px, #ffffff -1px -1px, #ffffff 1px -1px;
+  text-shadow: #ffffff 0.5px 0.5px, #ffffff -0.5px 0.5px, #ffffff 0.51px -0.5px, #ffffff 0.5px -0.5px;
 }
 
 .navbar-light .navbar-brand:hover, .navbar-light .navbar-brand:focus {

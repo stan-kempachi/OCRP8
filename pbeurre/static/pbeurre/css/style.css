@@ -43,8 +43,6 @@
   height: 97vh;
 }
 
-#substitute{
-  padding: 0 !important;
 }
 
 #image{
@@ -100,13 +98,6 @@
   background-color: white;
 }
 
-.productImg{
-  height: 100%;
-  width: 100%;
-  margin-top: 20px;
-  margin-bottom: 20px;
-}
-
 .image{
   position: relative;
   max-height: 300px;
@@ -117,45 +108,11 @@
   border-radius: 5px;
   }
 
-.favProduct{
-  height: 30vh;
-  width: auto;
-  margin-top: 20px;
-}
 
-.favProduct img{
-  height: 50%;
-  border-radius: 10px;
-}
-
-.nutriscore{
-  color: #f05f40;
-  background-color: white;
-  border: 2px solid white;
-  border-radius: 10px;
-  padding: 4px;
-  text-decoration: none;
-}
-
-.nutriscore:hover, .nutriscore:active{
+#nutri_score:hover, .nutri_score:active{
   color: white;
   background-color: #f05f40;
   text-decoration: none;
-}
-
-
-#note{
-  position: absolute;
-  right: 5%;
-  top: -5%;
-  transform: translate(-5%, 5%);
-  width: 25px;
-  height: 25px;
-  background-color: white;
-  border-style: solid;
-  border-width: 2px;
-  border-radius: 50%;
-  border-color: black;
 }
 
 #favorite{
@@ -163,9 +120,6 @@
   height: 100vh;
 }
 
-#remplacement{
-  margin-top: 10px;
-}
 
 .backgroundForm{
   width: 350px;
@@ -182,12 +136,6 @@
   transform: translate(-50%, -50%);
 }
 
-.backgroundForm{
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-}
 
 .loginInput{
   border: 1px solid grey;
@@ -228,9 +176,6 @@
   transition-duration: .5s;
 }
 
-.productPaper{
-  padding-top: 20px;
-}
 
 .openfoodfacts{
   background-color: black;
