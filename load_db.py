@@ -5,9 +5,8 @@ import psycopg2, requests
 import django
 import django.db
 import psycopg2.errors
-import django_heroku
 
-django_heroku.settings(locals())
+django.setup()
 
 # import personnal module
 from pbeurre import models
@@ -76,7 +75,7 @@ def load_category():
                         try:
                             category = cl.Categories(data)
                             models.Category.objects.create(id=category.id, name=elt, picture=category.picture)
-                        except (django.db.utils.ProgrammingError, django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
+                        except (django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
                             pass
                 except(django.db.utils.IntegrityError, django.db.utils.DataError):
                     print("Catégories : __{}__ non récupérés !".format(data["url"]))
@@ -116,7 +115,7 @@ def load_product():
                                                        picture=food.picture,
                                                        url=food.url,
                                                        stores=food.stores)
-                        except(django.db.utils.ProgrammingError, django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
+                        except(django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
                             try:
                                 print("Ce produit n'a put être récupéré:  {}".format(food.name))
                             except AttributeError:
