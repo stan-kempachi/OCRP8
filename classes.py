@@ -34,7 +34,7 @@ class Food():
             self.name = data_from_off["product_name_fr"]
             pass
             try:
-                self.category = data_from_off["categories"].split(",")
+                self.category_tags2 = data_from_off["categories"].split(",")
             except KeyError:
                 pass
             try:
@@ -92,4 +92,6 @@ class Food():
             except IndexError:
                 self.url = data_from_off
             self.index = index
+        except AttributeError:
+            pass
 

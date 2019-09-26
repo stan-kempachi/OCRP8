@@ -10,7 +10,7 @@ django.setup()
 
 # import personnal module
 from pbeurre import models
-from pbeurre import classes as cl
+import classes as cl
 
 
 try:
@@ -100,13 +100,13 @@ def load_product():
             if "en:" in data["categories"]:  # On ne prend pas celles en anglais
                 pass
             else:
-                for name in name_list:
-                    if name in data["categories"]:
+                for category_name in name_list:
+                    if category_name in data["categories"]:
                         try:
                             food = cl.Food(data)
                             models.Food.objects.create(name=food.name,
-                                                       category_tags1=name,
-                                                       category_tags2=food.category,
+                                                       category_tags1=category_name,
+                                                       category_tags2=food.category_tags2,
                                                        nutri_score=food.nutri_score,
                                                        repere_fat100g=food.repere_fat100g,
                                                        repere_saltunit=food.repere_saltvalue,
@@ -116,6 +116,11 @@ def load_product():
                                                        url=food.url,
                                                        stores=food.stores)
                         except(django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
+                            try:
+                                print("Ce produit n'a put être récupéré:  {}".format(food.name))
+                            except AttributeError:
+                                pass
+
                             pass
                     else:
                         pass

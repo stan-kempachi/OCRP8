@@ -25,12 +25,27 @@ def search(request):
         query = request.POST.get('query')
         if not query:
             foods = Food.objects.all()[:1]
-            sub_foods = Food.objects.all()[:12]
-            if not foods.exists():
-                print("not food exists")
+            sub_foods = Food.objects.filter(Q(nutri_score='a') |
+                                        Q(name__icontains=query)
+                                        & Q(nutri_score='b') |
+                                        Q(name__icontains=query)
+                                        & Q(nutri_score='c') |
+                                        Q(name__icontains=query)
+                                        & Q(nutri_score='d') |
+                                        Q(name__icontains=query)
+                                        & Q(nutri_score='e')).order_by('nutri_score')
         else:
             foods = Food.objects.filter(Q(name__icontains=query))[:1]
-            sub_foods = Food.objects.filter(Q(name__icontains=query))[:12]
+            sub_foods = Food.objects.filter(Q(name__icontains=query)
+                                        & Q(nutri_score='a') |
+                                        Q(name__icontains=query)
+                                        & Q(nutri_score='b') |
+                                        Q(name__icontains=query)
+                                        & Q(nutri_score='c') |
+                                        Q(name__icontains=query)
+                                        & Q(nutri_score='d') |
+                                        Q(name__icontains=query)
+                                        & Q(nutri_score='e')).order_by('nutri_score')
         context = {
             'foods': foods,
             'substitute': sub_foods
@@ -60,9 +75,9 @@ def details(request, food_id):
 #             query = "Nutella"
 #             foods = Food.objects.filter(Q(name__icontains=query))[:1]
 #             sub_foods = Food.objects.filter(Q(name__icontains=query))
-#                                             # & Q(nutri_score='a') |
-#                                             # Q(name__icontains=query)
-#                                             # & Q(nutri_score='b'))[:6]
+#                                             & Q(nutri_score='a') |
+#                                             Q(name__icontains=query)
+#                                             & Q(nutri_score='b'))[:6]
 #     else:
 #         print("erreur 2")
 #         return render(request, 'pbeurre/index.html')
