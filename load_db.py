@@ -5,8 +5,9 @@ import psycopg2, requests
 import django
 import django.db
 import psycopg2.errors
+import django_heroku
 
-django.setup()
+django_heroku.settings(locals())
 
 # import personnal module
 from pbeurre import models
