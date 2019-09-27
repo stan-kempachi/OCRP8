@@ -116,7 +116,7 @@ def load_product():
                                                        picture=food.picture,
                                                        url=food.url,
                                                        stores=food.stores)
-                        except(django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
+                        except(django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError, django.db.utils.ProgrammingError):
                             try:
                                 print("Ce produit n'a put être récupéré:  {}".format(food.name))
                             except AttributeError:
