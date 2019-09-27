@@ -61,7 +61,7 @@ def recup_data_api(url):
 
 
 def load_category():
-    models.Category.objects.all().delete()
+    # models.Category.objects.all().delete()
     url = "https://fr.openfoodfacts.org/categories/.json"
     data_from_url = recup_data_api(url)
     print("Lancement de la récupération des catégories . Allez on patiente un peu ! ")
@@ -76,9 +76,6 @@ def load_category():
                             category = cl.Categories(data)
                             c = models.Category(id=category.id, name=elt, picture=category.picture)
                             c.save()
-                            f = models.Food(category.id)
-                            f.save()
-                            f.category.add(category=c)
                         except (django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
                             pass
                 except(django.db.utils.IntegrityError, django.db.utils.DataError):
@@ -96,7 +93,7 @@ def lister_url():
 
 
 def load_product():
-    models.Food.objects.all().delete()
+    # models.Food.objects.all().delete()
     for url in urls_list:
         print(url)
         data_from_list = recup_data_api(url)
@@ -119,7 +116,6 @@ def load_product():
                                                        picture=food.picture,
                                                        url=food.url,
                                                        stores=food.stores)
-
                         except(django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
                             try:
                                 print("Ce produit n'a put être récupéré:  {}".format(food.name))

@@ -20,7 +20,6 @@ class Food(models.Model):
     Classe représentant la table 'Food' de la base de données
     """
     name = models.CharField(max_length=250, unique=True)
-    category = models.ManyToManyField(Category, related_name='food')
     category_tags1 = models.CharField(max_length=250)
     category_tags2 = models.CharField(max_length=600)
     nutri_score = models.CharField(max_length=3)
