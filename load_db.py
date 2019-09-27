@@ -74,7 +74,11 @@ def load_category():
                     for data in data_from_cat["products"]:
                         try:
                             category = cl.Categories(data)
-                            models.Category.objects.create(id=category.id, name=elt, picture=category.picture)
+                            c = models.Category(id=category.id, name=elt, picture=category.picture)
+                            c.save()
+                            f = models.Food(category.id)
+                            f.save()
+                            f.category.add(category=c)
                         except (django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
                             pass
                 except(django.db.utils.IntegrityError, django.db.utils.DataError):
@@ -115,6 +119,7 @@ def load_product():
                                                        picture=food.picture,
                                                        url=food.url,
                                                        stores=food.stores)
+
                         except(django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
                             try:
                                 print("Ce produit n'a put être récupéré:  {}".format(food.name))
