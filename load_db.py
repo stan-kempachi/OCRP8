@@ -78,7 +78,7 @@ def load_category():
                             c.save()
                         except (django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
                             pass
-                except(django.db.utils.IntegrityError, django.db.utils.DataError):
+                except(django.db.utils.IntegrityError, django.db.utils.DataError, django.db.utils.ProgrammingError):
                     print("Catégories : __{}__ non récupérés !".format(data["url"]))
                     pass
         else:
@@ -117,11 +117,6 @@ def load_product():
                                                        url=food.url,
                                                        stores=food.stores)
                         except(django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError, django.db.utils.ProgrammingError):
-                            try:
-                                print("Ce produit n'a put être récupéré:  {}".format(food.name))
-                            except AttributeError:
-                                pass
-
                             pass
                     else:
                         pass
