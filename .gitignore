@@ -1,5 +1,6 @@
 env/
-.idea/
-pbeurre/migrations
 __pycache__/
+.idea/
+pbeurre/__pycache__
+pbeurre/migrations/__pycache__
 plateforme_project/__pycache__/
