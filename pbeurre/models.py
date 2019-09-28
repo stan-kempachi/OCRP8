@@ -8,7 +8,6 @@ class Category(models.Model):
     """
     Classe représentant la table 'Category' de la base de données
     """
-    id = models.IntegerField(primary_key=True, unique=True)
     name = models.CharField(max_length=500, unique=True)
     picture = models.URLField(null=False)
 

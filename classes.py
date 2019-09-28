@@ -12,7 +12,6 @@ class Categories():
         """Initier un dictionnaire pour argument"""
         # Utiliser la clé lors de la création de la base de données à partir de l'API OFF
         try:
-            self.id = data_from_off["id"]
             self.name = data_from_off["categories"]
             self.picture = data_from_off["image_url"]
         except KeyError:

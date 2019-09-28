@@ -61,7 +61,7 @@ def recup_data_api(url):
 
 
 def load_category():
-    # models.Category.objects.all().delete()
+    models.Category.objects.all().delete()
     url = "https://fr.openfoodfacts.org/categories/.json"
     data_from_url = recup_data_api(url)
     print("Lancement de la récupération des catégories . Allez on patiente un peu ! ")
@@ -74,11 +74,10 @@ def load_category():
                     for data in data_from_cat["products"]:
                         try:
                             category = cl.Categories(data)
-                            c = models.Category(id=category.id, name=elt, picture=category.picture)
-                            c.save()
+                            models.Category.objects.create(name=elt, picture=category.picture)
                         except (django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
                             pass
-                except(django.db.utils.IntegrityError, django.db.utils.DataError, django.db.utils.ProgrammingError):
+                except(django.db.utils.IntegrityError, django.db.utils.DataError):
                     print("Catégories : __{}__ non récupérés !".format(data["url"]))
                     pass
         else:
@@ -93,7 +92,7 @@ def lister_url():
 
 
 def load_product():
-    # models.Food.objects.all().delete()
+    models.Food.objects.all().delete()
     for url in urls_list:
         print(url)
         data_from_list = recup_data_api(url)
@@ -116,7 +115,12 @@ def load_product():
                                                        picture=food.picture,
                                                        url=food.url,
                                                        stores=food.stores)
-                        except(django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError, django.db.utils.ProgrammingError):
+                        except(django.db.utils.IntegrityError, django.db.utils.DataError, AttributeError):
+                            try:
+                                print("Ce produit n'a put être récupéré:  {}".format(food.name))
+                            except AttributeError:
+                                pass
+
                             pass
                     else:
                         pass
@@ -138,5 +142,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
