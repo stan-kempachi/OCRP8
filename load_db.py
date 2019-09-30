@@ -1,10 +1,11 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-import psycopg2, requests
+import requests
 import django
 import django.db
 import psycopg2.errors
+from constantes import *
 
 django.setup()
 
@@ -31,26 +32,7 @@ except (Exception, psycopg2.Error) as error:
     print("Error while connecting to PostgreSQL", error)
 
 
-categories = []
-urls_list = []
-categories_id = []
-category_name = []
-count_product = []
-name_list = [
-    "Pâtes à tartiner au chocolat",
-    "Barres de céréales",
-    "Viandes fraîches",
-    "Pains spéciaux",
-    "Gâteaux et pâtisseries surgelés",
-    "Fromages à tartiner",
-    "Jus de fruits à base de concentré",
-    "Veloutés de légumes",
-    "Bonbons gélifiés",
-    "Sodas au cola",
-    "Yaourts brassés",
-    "Boudins",
-    "Sauces pour pâtes"
-]
+
 
 
 def recup_data_api(url):
@@ -87,7 +69,7 @@ def load_category():
 def lister_url():
     print("Récupération des produits en cours")
     for elt in categories:
-        for i in range(1, 37):  # generation d'un boucle un iterateur de 0 à 15 (900 produits max)
+        for i in range(1, 40):  # generation d'une boucle
             urls_list.append('{0}/{1}.json'.format(elt, str(i)))  # ajout à nouvelle liste
 
 

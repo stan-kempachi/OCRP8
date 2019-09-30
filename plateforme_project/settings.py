@@ -8,7 +8,6 @@ import django_heroku
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-STATIC_URL = '/static/'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/2.2/howto/deployment/checklist/
@@ -22,12 +21,16 @@ if os.environ.get('ENV') == 'PRODUCTION':
 else:
     DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'pbeurre.herokuapp.com']
+# DEBUG = False
+
+ALLOWED_HOSTS = ['127.0.0.1', 'http://pbeurre.herokuapp.com']
 
 # Application definition
 
 INSTALLED_APPS = [
     'pbeurre.app.PbeurreConfig',
+    'dal',
+    'dal_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -68,7 +71,7 @@ TEMPLATES = [
 ]
 
 TEMPLATE_DIRS = (
-    'plateforme_project/pbeurre/templates',
+    'plateforme_project.wsgi.application',
 )
 
 WSGI_APPLICATION = 'plateforme_project.wsgi.application'
@@ -120,6 +123,8 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
+
+STATIC_URL = '/static/'
 
 INTERNAL_IPS = [
     '127.0.0.1',

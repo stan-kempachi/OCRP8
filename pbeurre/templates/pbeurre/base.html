@@ -31,6 +31,10 @@
   <link href="{% static 'pbeurre/css/creative.css' %}" rel="stylesheet">
   <link href="{% static 'pbeurre/css/style.css' %}" rel="stylesheet">
 
+  <script type="text/javascript" src="{% static 'pbeurre/vendor/jquery-ui' %}"></script>
+  <script type="text/javascript" src="{% static 'pbeurre/vendor/jquery-ui/jquery.autocomplete.js' %}"></script>
+  <link rel="stylesheet" href="{% static 'pbeurre/vendor/jquery-ui/jquery-ui.css' %}" type="text/css" media="all" />
+
 </head>
 
 <body id="page-top">
@@ -39,14 +43,14 @@
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
       <img class="logoPurBeurre" src="{% static 'pbeurre/img/logo_pur_beurre.png' %}" alt="logoPurBeurre">
-      <a class="navbar-brand js-scroll-trigger" href="{% url 'index' %}">&nbsp Pur Beurre</a>
+      <a class="navbar-brand js-scroll-trigger" href="{% url 'pbeurre:index' %}">&nbsp Pur Beurre</a>
       <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
               data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-            <form class="form-inline" action="{% url 'search' %}" method="post" accept-charset="utf-8">{% csrf_token %}
+            <form class="form-inline" action="{% url 'pbeurre:search' %}" method="post" accept-charset="utf-8">{% csrf_token %}
                     <div class="form-inline">
                         <input id="champsearch" type="text"  aria-label="search" aria-describedby="submit"
                                placeholder="Recherche" size="10" name="query">
@@ -99,7 +103,7 @@
       <div class="small text-center text-muted">
           <font style="vertical-align: inherit;">
               <font style="vertical-align: inherit;">
-                  <a class="text-center js-scroll-trigger" href="{% url 'mention' %}">
+                  <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:mention' %}">
                       <font style="vertical-align: inherit;">
                       <font style="vertical-align: inherit;">
                           Mentions legales

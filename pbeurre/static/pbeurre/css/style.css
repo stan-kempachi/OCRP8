@@ -33,6 +33,7 @@
 
 #ratatouille{
   height: 400px;
+  margin-left: -15%;
 }
 
 #colette{
@@ -43,7 +44,6 @@
   height: 97vh;
 }
 
-}
 
 #image{
   height: 350px;
@@ -53,10 +53,24 @@
 
 #food-name{
   font-size: large;
-  font-family: monospace;
-  position: relative;
-  color: #e25f40;
+  color: #ffffff;
   top:2.5ch;
+}
+
+#no_result_text{
+  font-size: large;
+}
+
+#backgroundProduct{
+  color: #FFFFFF;
+  margin-top:2%;
+  padding-bottom:4%;
+  background-color: #d88609;
+}
+
+#backgroundProduct:link {
+  color: #FFFFFF;
+
 }
 
 .addmargintop{
@@ -86,7 +100,7 @@
   height: 100%;
   border: 4px solid white;
   border-radius: 10px;
-  z-index: 9999;
+  z-index: 4;
 }
 
 .headerImage p{

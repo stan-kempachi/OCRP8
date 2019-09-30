@@ -1,10 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-
-
-"""Ce fichier contient des classes représentant la base de données de ce programme"""
-
-
+from constantes import category_name
 class Categories():
     """Classe représentant la table 'Categories' de la base de données"""
 
@@ -22,7 +18,7 @@ class Categories():
             self.index = index
 
 
-class Food():
+class Food:
     """Classe représentant la table 'Food' de la base de données"""
 
     def __init__(self, data_from_off, index=None):
@@ -32,6 +28,10 @@ class Food():
         try:
             self.name = data_from_off["product_name_fr"]
             pass
+            try:
+                self.category_tags1 = category_name
+            except KeyError:
+                pass
             try:
                 self.category_tags2 = data_from_off["categories"].split(",")
             except KeyError:
@@ -93,4 +93,5 @@ class Food():
             self.index = index
         except AttributeError:
             pass
+
 

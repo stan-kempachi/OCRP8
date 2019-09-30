@@ -21,7 +21,7 @@ from pbeurre import views
 
 urlpatterns = [
     url(r'^$', views.index),
-    url(r'^pbeurre/', include('pbeurre.urls')),
+    url(r'^pbeurre/', include(('pbeurre.urls', 'pbeurre'), namespace='pbeurre')),
     url(r'^admin/', admin.site.urls),
     url(r'^search/$', views.search)
 ]
