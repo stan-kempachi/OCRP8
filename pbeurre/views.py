@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from django.db.models import Q
 from .forms import LoginForm, RegisterForm, SearchForm
+import logging
 # personal import
 from .models import Food, Category, Contact, Backup
 
+logging.debug(__name__)
 
 def index(request):
-    form = SearchForm(request.POST)
-    return render(request, 'pbeurre/index.html', {'form': form})
+    return render(request, 'pbeurre/index.html')
+
 
 def page_not_found(request):
     """define error page"""
