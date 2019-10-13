@@ -1,5 +1,4 @@
 from django import forms
-from dal import autocomplete
 from pbeurre.models import Food
 from django.utils.html import format_html
 
@@ -17,13 +16,3 @@ class RegisterForm(forms.Form):
 
 class SearchForm(forms.Form):
     search = forms.CharField(max_length=50)
-
-
-class FoodForm(forms.ModelForm):
-    class Meta:
-        widgets = {
-            'name': autocomplete.ModelSelect2(
-                url='food-autocomplete',
-                attrs={'data-html': True}
-            )
-        }

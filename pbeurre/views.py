@@ -2,8 +2,7 @@ from django.db.models import Q
 from django.shortcuts import render, HttpResponse, get_object_or_404
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.utils.html import format_html
-# from dal import autocomplete
-from .forms import LoginForm, RegisterForm, SearchForm, FoodForm
+from .forms import LoginForm, RegisterForm, SearchForm
 import logging, json
 
 # personal import
@@ -41,7 +40,6 @@ def search(request):
             'substitute': substitute,
             'paginate': True,
         }
-        print(query)
         return render(request, 'pbeurre/search.html', context)
 
 

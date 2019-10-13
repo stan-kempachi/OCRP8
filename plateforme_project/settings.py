@@ -30,9 +30,6 @@ ALLOWED_HOSTS = ['127.0.0.1', 'pbeurre.herokuapp.com']
 
 INSTALLED_APPS = [
     'pbeurre.app.PbeurreConfig',
-    'dal',
-    'dal_select2',
-    'autocomplete_light',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
