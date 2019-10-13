@@ -1,6 +1,8 @@
 from django import forms
-# from dal import autocomplete
-# from pbeurre import models
+from dal import autocomplete
+from pbeurre.models import Food
+from django.utils.html import format_html
+
 
 class LoginForm(forms.Form):
     email = forms.CharField(label="Email", max_length=50)
@@ -17,10 +19,11 @@ class SearchForm(forms.Form):
     search = forms.CharField(max_length=50)
 
 
-# class FoodForm(forms.ModelForm):
-#     class Meta:
-#         model = models.Food
-#         fields = 'name'
-#         widgets = {
-#             'name': autocomplete.ModelSelect2(url='food-autocomplete')
-#         }
+class FoodForm(forms.ModelForm):
+    class Meta:
+        widgets = {
+            'name': autocomplete.ModelSelect2(
+                url='food-autocomplete',
+                attrs={'data-html': True}
+            )
+        }

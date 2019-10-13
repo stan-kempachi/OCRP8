@@ -242,3 +242,8 @@
 #nutri-image {
   right: -10em;
 }
+
+#captain {
+  position: center;
+  right: 100%;
+}

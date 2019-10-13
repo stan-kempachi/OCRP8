@@ -1,4 +1,4 @@
-import  os
+import os
 
 import dj_database_url
 
@@ -18,11 +18,11 @@ SECRET_KEY = '4bf8zx8t^se760vf#$sm^p_%j=*i=nccqjb#kp(2ug+6e51_(*'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 if os.environ.get('ENV') == 'PRODUCTION':
-    DEBUG = False
+   DEBUG = False
 else:
-    DEBUG = True
+   DEBUG = True
 
-
+# DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'pbeurre.herokuapp.com']
 
@@ -30,13 +30,16 @@ ALLOWED_HOSTS = ['127.0.0.1', 'pbeurre.herokuapp.com']
 
 INSTALLED_APPS = [
     'pbeurre.app.PbeurreConfig',
+    'dal',
+    'dal_select2',
+    'autocomplete_light',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'django.contrib.sites',
+    # 'django.contrib.sites',
     'debug_toolbar',
 ]
 
@@ -49,6 +52,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
+    'django.middleware.locale.LocaleMiddleware',
 ]
 
 ROOT_URLCONF = 'plateforme_project.urls'
@@ -110,7 +114,7 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/2.2/topics/i18n/
 
-LANGUAGE_CODE = 'en'
+LANGUAGE_CODE = 'fr'
 
 TIME_ZONE = 'Europe/Paris'
 

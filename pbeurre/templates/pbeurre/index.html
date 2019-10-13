@@ -15,12 +15,16 @@
               Trouvez un produit de substitution pour ceux que vous consommez tous les jours
           </h2>
           <div class="row align-items-center justify-content-center text-center">
-              <form action="{% url 'pbeurre:search' %}" method="post" accept-charset="utf-8">{% csrf_token %}
+              <form action="{% url 'pbeurre:search' %}" method="get" accept-charset="utf-8">
+            {% csrf_token %}
                     <div class="form-group">
                         <input id="searchForm" type="text"  aria-label="Food Name" aria-describedby="button-addon2"
                                placeholder="Entrez le nom du produit" size="30" name="query">
                         <button class="btn-primary my-2 my-sm-0" id="button-addon2" type="submit" value="submit">Chercher</button>
                     </div>
+                <script>
+
+                </script>
               </form>
           </div>
         </div>
@@ -50,6 +54,10 @@
     </div>
 	</section>
 {% endblock%}
+{% block footer %}
+<script type="text/javascript" src="{% static 'admin/js/vendor/jquery/jquery.js' %}"></script>
 
+{{ form.media }}
+{% endblock %}
 
 

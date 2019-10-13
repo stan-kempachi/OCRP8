@@ -1,19 +1,22 @@
-from django.shortcuts import render, redirect
 from django.db.models import Q
-from .forms import LoginForm, RegisterForm, SearchForm
-import logging
+from django.shortcuts import render, HttpResponse, get_object_or_404
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.utils.html import format_html
+# from dal import autocomplete
+from .forms import LoginForm, RegisterForm, SearchForm, FoodForm
+import logging, json
+
 # personal import
 from .models import Food, Category, Contact, Backup
 
 logging.debug(__name__)
 
 def index(request):
-    return render(request, 'pbeurre/index.html')
-
-
-def page_not_found(request):
-    """define error page"""
-    return render(request, 'pbeurre/500.html')
+    form = SearchForm(request.POST)
+    context = {
+        'form': form
+    }
+    return render(request, 'pbeurre/index.html', context)
 
 
 def mention_legale(request):
@@ -21,30 +24,25 @@ def mention_legale(request):
 
 
 def search(request):
-    if request.method == 'POST':
-        query = request.POST.get('query')
-        if not query:
-            return render(request, 'pbeurre/500.html')
-        else:
-            food = Food.objects.filter(Q(name__icontains=query))[:1]
-            sub_foods = Food.objects.filter(Q(name__icontains=query)
-                                            & Q(nutri_score='a') |
-                                            Q(name__icontains=query)
-                                            & Q(nutri_score='b') |
-                                            Q(name__icontains=query)
-                                            & Q(nutri_score='c') |
-                                            Q(name__icontains=query)
-                                            & Q(nutri_score='d') |
-                                            Q(name__icontains=query)
-                                            & Q(nutri_score='e'))\
-                .order_by('nutri_score')
-
+    if request.GET:
+        page = request.GET.get('page')
+        query = request.GET.get('query')
+        food = Food.objects.filter(name__icontains=query)[:1]
+        substitute_list = Food.objects.filter(name__icontains=query).all().order_by('nutri_score')
+        paginator = Paginator(substitute_list, 12)
+        try:
+            substitute = paginator.page(page)
+        except PageNotAnInteger:
+            substitute = paginator.page(1)
+        except EmptyPage:
+            substitute = paginator.page(paginator.num_pages)
         context = {
             'foods': food,
-            'substitute': sub_foods
+            'substitute': substitute,
+            'paginate': True,
         }
+        print(query)
         return render(request, 'pbeurre/search.html', context)
-
 
 
 def details(request, food_id):
@@ -55,5 +53,3 @@ def details(request, food_id):
         'form': form
     }
     return render(request, 'pbeurre/details.html', context)
-
-

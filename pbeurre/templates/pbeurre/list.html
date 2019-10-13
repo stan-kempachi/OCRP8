@@ -1,46 +1,39 @@
 <body>
-    <section id="portfolio">
-        <div class="container-fluid p-0">
-            <div class="row">
-            {% for food in foods %}
-            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 headerImage text-center">
-                <a class="portfolio-box" href="{{ food.picture }}">
-                  <img class="image" src="{{ food.picture }}" alt="{{ food.name }}">
-                    <div class="portfolio-box-caption">
-                        <div class="project-category text-white-50">
-                          {{ food.category_tags1 }}
-                        </div>
-                        <div class="project-name">
-                        {{ food.name }}
-                        </div>
-                    </div>
-                </a>
+  <section>
+    <h4 class="text-center  mx-auto">Vous pouvez remplacer ce produit par :</h4>
+    {% if substitute|length_is:"0" %}
+    <div class="col-sm-12 col-md-12 headerImage text-center" id="no_result_text">
+      Miséricorde ! Nous n'avons trouvé aucun résultat à cette requête. <br>
+        Même pas de quoi se ronger la chique ! <br>
+      Lancez de nouveau votre ligne !
+    </div>
+        {% else %}
+            <div id="backgroundProduct" class="row">
+            {% for food in substitute %}
+            <div   class="col-sm-12 col-md-12 col-lg-4 col-xl-4  headerImage text-center">
+                <div id="nutri_score">{{ food.nutri_score }}</div>
+                <a class="img-fluid" href="{{ food.picture }}">
+                  <img id="food-image" class="image" src="{{ food.picture }}" alt=""></a>
+                <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:details' food_id=food.id %}">
+                    <h6 id="food-name">{{ food.name }}<br></h6></a>
+                     <h6><i class="fas fa-save"></i> Sauvegarder</h6>
                 {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
             </div>
             {% endfor %}
             </div>
-        </div>
-    </section>
-    <section id="portfolio">
-        <div class="container-fluid p-0">
-            <div class="row">
-            {% for food in sub_foods %}
-            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 headerImage mx-auto text-center">
-                <a class="portfolio-box" href="{{ food.picture }}">
-                  <img class="image" src="{{ food.picture }}" alt="{{ food.name }}">
-                    <div class="portfolio-box-caption">
-                        <div class="project-category text-white-50">
-                          {{ food.category_tags1 }}
-                        </div>
-                        <div class="project-name">
-                        {{ food.name }}
-                        </div>
-                    </div>
-                </a>
-                {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
-            </div>
-            {% endfor %}
-            </div>
-        </div>
+            {% if paginate %}
+              <div class="clearfix"></div>
+              <nav aria-label="...">
+                <ul class="pager">
+                  {% if substitute.has_previous %}
+                      <li><a href="?page={{ substitute.previous_page_number }}">Précédent</a></li>
+                  {% endif %}
+                  {% if substitute.has_next %}
+                      <li><a href="?page={{ substitute.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Suivant</a></li>
+                  {% endif %}
+                </ul>
+              </nav>
+            {% endif %}
+    {% endif %}
     </section>
 </body>
