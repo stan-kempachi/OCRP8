@@ -26,7 +26,7 @@
               <nav aria-label="...">
                 <ul class="pager">
                   {% if substitute.has_previous %}
-                      <li><a href="?page={{ substitute.previous_page_number }}">Précédent</a></li>
+                      <li><a href="?page={{ substitute.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Précédent</a></li>
                   {% endif %}
                   {% if substitute.has_next %}
                       <li><a href="?page={{ substitute.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Suivant</a></li>
