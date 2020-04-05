@@ -47,8 +47,7 @@ def search(request):
         user = request.user
         query = request.GET.get('query')
         food = Food.objects.filter(name__icontains=query)[:1]
-        foo = get_object_or_404(Food, name__icontains=query)
-
+        foo = get_object_or_404(food)
         substitute_list = Food.objects.filter(name__icontains=query,
                                               category_tags2__icontains=foo.category_tags1
                                               ).order_by('nutri_score')[1:]
