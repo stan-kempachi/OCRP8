@@ -4,18 +4,14 @@ from django.contrib import messages
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.db.models import Q
-
-from dal import  autocomplete
 
 # personal import
 from .models import Food, Backup
-from .forms import RegisterForm, SearchForm, LoginForm, FoodForm
-
+from .forms import RegisterForm, SearchForm, LoginForm
 
 
 def index(request):
-    form = FoodForm(request.POST)
+    form = SearchForm(request.POST)
     context = {
         'form': form
     }
@@ -168,16 +164,3 @@ def favorite(request):
         'favoris': favoris
     }
     return render(request, 'pbeurre/favorite.html', context)
-
-
-class FoodAutocomplete(autocomplete.Select2QuerySetView):
-    def get_queryset(self):
-        if not self.request.user:
-            return Food.objects.none()
-        qs = Food.objects.all()
-        if self.q:
-            qs = qs.filter(name__istartswith=self.q)
-            context = {
-                'qs': qs
-            }
-            return render('pbeurre/index.html', context)

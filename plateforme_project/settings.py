@@ -22,17 +22,12 @@ if os.environ.get('ENV') == 'PRODUCTION':
 else:
    DEBUG = True
 
-# DEBUG = False
-
 ALLOWED_HOSTS = ['127.0.0.1', 'pbeurre.herokuapp.com']
 
 # Application definition
 
 INSTALLED_APPS = [
     'pbeurre',
-    'dal',
-    'dal_select2',
-    'django_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -138,8 +133,6 @@ CACHES = {
         'LOCATION': '127.0.0.1:8080',
     }
 }
-
-SELECT2_JS = 'assets/js/select2.min.js'
 
 LOGIN_REDIRECT_URL = 'pbeurre:search'
 
