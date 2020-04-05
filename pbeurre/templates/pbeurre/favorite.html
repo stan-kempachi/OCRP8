@@ -1,0 +1,41 @@
+{% extends 'pbeurre/base.html' %}
+{% block content%}
+<section>
+  <header>
+
+    <div style="padding-top:5%" class="col-sm-12 col-md-12  text-center">
+    <h4 class="text-center  mx-auto">Vos Produits Favoris :</h4>
+    {% if not favori %}
+        <br>
+      Vous n'avez pas encore de favoris !
+    </div>
+        {% else %}
+            <div id="backgroundProduct" class="row">
+            {% for food in favori %}
+            <div   class="col-sm-12 col-md-12 col-lg-4 col-xl-4  headerImage text-center">
+                <div id="nutri_score">{{ food.nutri_score }}</div>
+                <a class="img-fluid" href="{{ food.picture }}">
+                  <img id="food-image" class="image" src="{{ food.picture }}" alt=""></a>
+                <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:details' food_id=food.id %}">
+                    <h6 id="food-name">{{ food.name }}</h6></a>
+                {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+            </div>
+            {% endfor %}
+            </div>
+            {% if paginate %}<br>
+              <div class="clearfix"></div>
+              <nav aria-label="...">
+                <ul class="pager">
+                  {% if favoris.has_previous %}
+                      <a href="?page={{ favoris.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Précédent</a>
+                  {% endif %}
+                  {% if favoris.has_next %}
+                      <a href="?page={{ favoris.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Suivant</a>
+                  {% endif %}
+                </ul>
+              </nav>
+            {% endif %}
+    {% endif %}
+    </header>
+</section>
+{% endblock%}

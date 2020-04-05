@@ -1,13 +1,13 @@
 {% extends 'pbeurre/base.html' %}
 
 {% block content %}
-    <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 addmargintop mx-auto text-center">
+    <header class="page-section text-center">
     <p>Une erreur s'est produite. Nous sommes actuellement en liaison directe avec Captain pour investiguer sur les causes du drame.</p>
-    <div class="embed-responsive embed-responsive-16by9 ">
-      <iframe id="captain" class="row -align-center"
-       src="https://i.pinimg.com/564x/83/6a/e3/836ae3f1f880a123a2bdf42a16d01a87.jpg"></iframe>
-    </div>
-
-    <p> Il semblerait que vous soyez perdu. Retournez à <a href="{% url 'pbeurre:index' %}">l'accueil</a>.</p>
+    <br><p> Il semblerait que vous soyez perdu. Retournez à <a href="{% url 'pbeurre:index' %}">l'accueil</a>.</p><br>
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 mx-auto align-content-center">
+            <div style="right:-30%" class="embed-responsive embed-responsive-16by9 ">
+                <iframe src="https://i.imgur.com/ToCrR8a.jpg"></iframe>
+            </div>
         </div>
-{% endblock%}
+    </header>
+{% endblock %}

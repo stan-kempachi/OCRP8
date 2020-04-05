@@ -1,10 +1,5 @@
-{% block content %}
 <section>
-<header>
-    <div class="col-sm-12 col-md-12  text-center">
-    {% if foods %}
     <h4 class="text-center  mx-auto">Vous pouvez remplacer ce produit par :</h4>
-    {% endif %}
     {% if substitute|length_is:"0" %}
     <div class="col-sm-12 col-md-12 headerImage text-center" id="no_result_text">
       Miséricorde ! Nous n'avons trouvé aucun résultat à cette requête. <br>
@@ -20,19 +15,22 @@
                   <img id="food-image" class="image" src="{{ food.picture }}" alt=""></a>
                 <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:details' food_id=food.id %}">
                     <h6 id="food-name">{{ food.name }}<br></h6></a>
-                  {% if user.is_authenticated %}
-                 {% if food in favori %}
-              <h6 style="color: #f4decf">Ce produit est deja vos favoris</h6>
-                {% endif %}
-                 {% if not food in favori %}
-                <a id="favorite" href="{% url 'pbeurre:add_favorite' food_id=food.id %}"><i class="far fa-save"></i> Sauvegarder</a>
-                {% endif %}
-                {% endif %}
+
+                        <form action="{% url 'pbeurre:add_favorite' food_id=food.id %}" method="post">
+                            {% load widget_tweaks %}
+                             {% csrf_token %}
+                             <div class="form-group">
+                                <a id="favorite" class="text-center js-scroll-trigger"
+                                   type="url" href="{% url 'pbeurre:add_favorite' food_id=food.id %}">
+                                    <h6><i class="fas fa-save"></i> Sauvegarder</h6></a>
+                             </div>
+                         </form>
+
                 {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
             </div>
             {% endfor %}
             </div>
-                    {% if paginate %}<br>
+            {% if paginate %}
               <div class="clearfix"></div>
               <nav aria-label="...">
                 <ul class="pager">
@@ -40,14 +38,10 @@
                       <a href="?page={{ substitute.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Précédent</a>
                   {% endif %}
                   {% if substitute.has_next %}
-                      <a href="?page={{ substitute.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Suivant</a>
+                      <a href="?page={{ substitute.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" id='next'>Suivant</a>
                   {% endif %}
                 </ul>
               </nav>
             {% endif %}
     {% endif %}
-    </div>
-</header>
 </section>
-{% endblock %}
-

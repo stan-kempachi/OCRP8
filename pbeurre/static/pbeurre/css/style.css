@@ -130,11 +130,15 @@
 }
 
 #favorite{
+  color: #FFFFFF;
   padding: 0 !important;
-  height: 100vh;
 }
 
-
+#next{
+  position: relative;
+  padding-left: 10%;
+  right: 50%;
+}
 .backgroundForm{
   width: 350px;
   padding: 35px;

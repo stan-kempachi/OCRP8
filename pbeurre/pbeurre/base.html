@@ -51,8 +51,7 @@
       </button>
       <div class="collapse navbar-collapse" id="navbarResponsive">
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
-            <form class="form-inline" action="{% url 'pbeurre:search' %}" method="get" accept-charset="utf-8">
-                {% csrf_token %}
+            <form class="form-inline" action="{% url 'pbeurre:search' %}" method="post" accept-charset="utf-8">{% csrf_token %}
                     <div class="form-inline">
                         <input id="champsearch" type="text"  aria-label="search" aria-describedby="submit"
                                placeholder="Recherche" size="10" name="query">
@@ -60,15 +59,15 @@
                     </div>
               </form>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{% url 'pbeurre:mon_compte' %}"><i class="fas fa-user"></i></a>
+            <a class="nav-link js-scroll-trigger"><i class="fas fa-user"></i></a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger"  href="{% url 'pbeurre:favorite' %}">
+            <a class="nav-link js-scroll-trigger">
               <img class="carrot" src="{% static 'pbeurre/img/carrott.png' %}" alt="mes aliments">
             </a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll-trigger" href="{% url 'pbeurre:logout' %}"><i class="fas fa-sign-out-alt"></i></a>
+            <a class="nav-link js-scroll-trigger"><i class="fas fa-sign-out-alt"></i></a>
           </li>
         </ul>
       </div>
@@ -76,6 +75,29 @@
   </nav>
 {% block content %}
 {% endblock %}
+  <section class="page-section" id="contact">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8 text-center">
+          <h2 class="mt-0"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Contactez Nous !</font></font></h2>
+          <hr class="divider my-4">
+          <p class="text-muted mb-5"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">Vous avez des questions ?
+              <br>N'hésitez pas à nous contacter !</font></font></p>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4 ml-auto text-center mb-5 mb-lg-0">
+          <i class="fas fa-phone fa-3x mb-3 text-muted"></i>
+          <div><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">123-456-6789</font></font></div>
+        </div>
+        <div class="col-lg-4 mr-auto text-center">
+          <i class="fas fa-envelope fa-3x mb-3 text-muted"></i>
+          <!-- Make sure to change the email address in anchor text AND the link below! -->
+          <a class="d-block" href="pbeurre@mail.com"><font style="vertical-align: inherit;"><font style="vertical-align: inherit;">pbeurre@mail.com</font></font></a>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <footer class="bg-light py-5">
     <div class="container">
@@ -98,7 +120,7 @@
       </div>
     </div>
   </footer>
-</body>
+
   <!-- Bootstrap core JavaScript -->
   <script src="{% static 'pbeurre/vendor/jquery/jquery.min.js' %}"></script>
   <script src="{% static 'pbeurre/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
@@ -110,4 +132,5 @@
 
   <!-- Custom scripts for this template -->
   <script src="{% static 'pbeurre/js/creative.min.js' %}"></script>
+</body>
 </html>

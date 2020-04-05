@@ -29,15 +29,19 @@ ALLOWED_HOSTS = ['127.0.0.1', 'pbeurre.herokuapp.com']
 # Application definition
 
 INSTALLED_APPS = [
-    'pbeurre.app.PbeurreConfig',
+    'pbeurre',
+    'dal',
+    'dal_select2',
+    'django_select2',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'django.contrib.sites',
+    'django.contrib.sites',
     'debug_toolbar',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [
@@ -127,6 +131,20 @@ USE_TZ = True
 INTERNAL_IPS = [
     '127.0.0.1',
 ]
+
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.memcached.MemcachedCache',
+        'LOCATION': '127.0.0.1:8080',
+    }
+}
+
+SELECT2_JS = 'assets/js/select2.min.js'
+
+LOGIN_REDIRECT_URL = 'pbeurre:search'
+
+LOGIN_URL = 'pbeurre:login'
+
 
 if os.environ.get('ENV') == 'PRODUCTION':
 

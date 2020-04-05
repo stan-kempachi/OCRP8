@@ -1,0 +1,34 @@
+{% extends 'pbeurre/base.html' %}
+
+{% block content%}
+
+  <section class="bg-primary" id="login">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto text-center login-form">
+          <form class="backgroundForm" method="post">
+            {% load widget_tweaks %}
+            {% csrf_token %}
+            <h5>Enregistrement</h5>
+            <div class="NameLoginForm">
+              {{ form.name|add_class:"loginInput"|attr:"placeholder:Name"}}
+            </div>
+            <div class="emailLoginForm">
+              {{ form.email|add_class:"loginInput"|attr:"placeholder:Email" }}
+            </div>
+            <div class="passwordLoginForm">
+              {{ form.password|add_class:"passwordInput"|attr:"placeholder:Password" }}
+            </div>
+            {% if messages %}
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <input type="submit" value="S'enregistrer" class="seConnecterButton">
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock%}
