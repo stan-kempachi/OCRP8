@@ -138,7 +138,6 @@ LOGIN_REDIRECT_URL = 'pbeurre:search'
 
 LOGIN_URL = 'pbeurre:login'
 
-
 if os.environ.get('ENV') == 'PRODUCTION':
 
     # Static files settings
