@@ -46,7 +46,7 @@ class Backup(models.Model):
     """
     Classe représentant la table 'Backup' de la base de données
     """
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=False)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     food = models.ManyToManyField(Food)
 
     class Meta:
