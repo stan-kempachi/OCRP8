@@ -5,7 +5,7 @@
   <section class="bg-primary" id="login">
     <div class="container">
       <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 mx-auto text-center login-form">
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mx-auto text-center login-form">
           <form class="backgroundForm" method="post">
             {% load widget_tweaks %}
             {% csrf_token %}
@@ -23,6 +23,7 @@
                 {% for message in messages %}
                 <p>{{ message }}</p>
                 {% endfor %}
+                <a href="{% url 'pbeurre:login' %}">Se connecter </a>
             {% endif %}
             <input type="submit" value="S'enregistrer" class="seConnecterButton">
           </form>

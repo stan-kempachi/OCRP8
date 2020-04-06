@@ -36,6 +36,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'debug_toolbar',
+    'widget_tweaks',
 ]
 
 MIDDLEWARE = [

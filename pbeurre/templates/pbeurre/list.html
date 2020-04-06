@@ -23,16 +23,18 @@
                   {% if user.is_authenticated %}
                  {% if food in favori %}
               <h6 style="color: #f4decf">Ce produit est deja vos favoris</h6>
-                {% endif %}
-                 {% if not food in favori %}
+                     {% else %}
+                     <a id="favorite" href="{% url 'pbeurre:add_favorite' food_id=food.id %}"><i class="far fa-save"></i> Sauvegarder</a>
+                      {% endif %}
+                 {% else %}
                 <a id="favorite" href="{% url 'pbeurre:add_favorite' food_id=food.id %}"><i class="far fa-save"></i> Sauvegarder</a>
-                {% endif %}
-                {% endif %}
+                 {% endif %}
                 {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
             </div>
             {% endfor %}
             </div>
-                    {% if paginate %}<br>
+        <br>
+            {% if paginate %}
               <div class="clearfix"></div>
               <nav aria-label="...">
                 <ul class="pager">
