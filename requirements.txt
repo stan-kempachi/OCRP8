@@ -10,12 +10,14 @@ django-appconf==1.0.4
 django-debug-toolbar==2.0
 django-heroku==0.3.1
 django-select2==7.2.3
+django-widget-tweaks==1.4.8
 gunicorn==19.9.0
 idna==2.8
 importlib-metadata==0.23
 more-itertools==7.2.0
 packaging==19.2
 pluggy==0.13.0
+psycopg2==2.8.4
 py==1.8.0
 pyparsing==2.4.2
 pytest==5.2.1
