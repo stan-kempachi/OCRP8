@@ -45,8 +45,8 @@ def search(request):
         food = Food.objects.filter(name__icontains=query)[:1]
         foo = get_object_or_404(food)
         substitute_list = Food.objects.filter(name__icontains=query,
-                                              category_tags2__icontains=foo.category_tags1
-                                              ).order_by('nutri_score')[1:]
+                                              # category_tags2__icontains=foo.category_tags1
+                                              ).order_by('nutri_score')
         favori = Food.objects.filter(backup__user_id=user.id)
         # paginator settings
         page = request.GET.get('page')
@@ -120,7 +120,7 @@ def mon_compte(request):
 def add_favorite(request, food_id):
     user = request.user
     food = Food.objects.get(id=food_id)
-    backup = Food.objects.filter(backup__user_id=user.id).order_by('nutri_score')[1:]
+    backup = Food.objects.filter(backup__user_id=user.id).order_by('nutri_score')
     save = Backup.objects.filter(user=user)
     if save:
         add = Backup.objects.get(user_id=user.id)
@@ -146,9 +146,33 @@ def add_favorite(request, food_id):
 
 
 @login_required()
+def remove_favorite(request, food_id):
+    user = request.user
+    rem = Food.objects.filter(backup__user_id=user.id)
+    rm = rem.get(id=food_id)
+    rm.delete()
+    backup = Food.objects.filter(backup__user_id=user.id).order_by('nutri_score')
+    # paginator settings
+    page = request.GET.get('page')
+    paginator = Paginator(backup, 9)
+    try:
+        favoris = paginator.page(page)
+    except PageNotAnInteger:
+        favoris = paginator.page(1)
+    except EmptyPage:
+        favoris = paginator.page(paginator.num_pages)
+    context = {
+        'favori': backup,
+        'paginate': True,
+        'favoris': favoris
+    }
+    return render(request, 'pbeurre/favorite.html', context)
+
+
+@login_required()
 def favorite(request):
     user = request.user
-    backup = Food.objects.filter(backup__user_id=user.id).order_by('nutri_score')[1:]
+    backup = Food.objects.filter(backup__user_id=user.id).order_by('nutri_score')
     # paginator settings
     page = request.GET.get('page')
     paginator = Paginator(backup, 9)
