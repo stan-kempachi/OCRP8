@@ -1,6 +1,7 @@
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.contrib import messages
+from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -9,6 +10,8 @@ from django.contrib.auth.models import User
 from .models import Food, Backup
 from .forms import RegisterForm, SearchForm, LoginForm
 
+
+key = '4bf8zx8t^se760vf#$sm^p_%j=*i=nccqjb#kp(2ug+6e51_(*'
 
 def index(request):
     form = SearchForm(request.POST)
@@ -41,13 +44,12 @@ def mention_legale(request):
 def search(request):
     if request.GET:
         user = request.user
-        query = request.GET.get('query')
+        query = request.GET.get('q')
         food = Food.objects.filter(name__icontains=query)[:1]
         foo = get_object_or_404(food)
         substitute_list = Food.objects.filter(name__icontains=query,
-                                              # category_tags2__icontains=foo.category_tags1
                                               ).order_by('nutri_score')
-        favori = Food.objects.filter(backup__user_id=user.id)
+        favori = Food.objects.filter(Q(backup__user_id=user.id))[1:]
         # paginator settings
         page = request.GET.get('page')
         paginator = Paginator(substitute_list, 12)
@@ -62,6 +64,7 @@ def search(request):
             'foods': food,
             'substitute': substitute,
             'paginate': True,
+
         }
         return render(request, 'pbeurre/search.html', context)
     else:

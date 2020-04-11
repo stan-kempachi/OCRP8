@@ -1,7 +1,7 @@
 {% block content %}
 <section>
 <header>
-    <div class="col-sm-12 col-md-12  text-center">
+    <div class="col-sm-12 col-md-12 ">
     {% if foods %}
     <h4 class="text-center  mx-auto">Vous pouvez remplacer ce produit par :</h4>
     {% endif %}
@@ -33,25 +33,41 @@
                      <form action="{% url 'pbeurre:add_favorite' food_id=food.id %}" method="get" accept-charset="utf-8">
                 {% csrf_token %}
                     <button class="btn-primary my-2 my-sm-0" type="submit" value="submit"><i class="far fa-trash-alt">&nbsp Sauvegarder</i></button>
-                    </form>                 {% endif %}
+                    </form>
+                  {% endif %}
                 {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
             </div>
             {% endfor %}
             </div>
         <br>
+
             {% if paginate %}
-              <div class="clearfix"></div>
+                <div class="mx-auto  text-center">
               <nav aria-label="...">
-                <ul class="pager">
-                  {% if substitute.has_previous %}
-                      <a href="?page={{ substitute.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Précédent</a>
-                  {% endif %}
-                  {% if substitute.has_next %}
-                      <a href="?page={{ substitute.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Suivant</a>
-                  {% endif %}
-                </ul>
+
+                {% if substitute.has_other_pages %}
+                    {% if substitute.has_previous %}
+                      <a href="?page={{ substitute.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo;</a>
+                    {% else %}
+                     <span>&laquo;</span>
+                    {% endif %}
+                    {% for i in substitute.paginator.page_range %}
+                      {% if substitute.number == i %}
+                        <span>{{ i }} <span class="sr-only">(current)</span></span>
+                      {% else %}
+                       <a href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ i }}</a>
+                      {% endif %}
+                    {% endfor %}
+                    {% if substitute.has_next %}
+                   <a href="?page={{ substitute.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a>
+                    {% else %}
+                     <span>&raquo;</span>
+                    {% endif %}
+                {% endif %}
               </nav>
-            {% endif %}
+            </div>
+        {% endif %}
+
     {% endif %}
     </div>
 </header>

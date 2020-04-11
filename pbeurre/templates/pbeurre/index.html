@@ -19,8 +19,8 @@
                 {% csrf_token %}
                     <div class="form-group">
                         <input id="searchForm" type="text"  aria-label="Food Name" aria-describedby="button-addon2"
-                               placeholder="Entrez le nom du produit" size="30" name="query">
-                        <button class="btn-primary my-2 my-sm-0" id="button-addon2" type="submit" value="submit">Chercher</button>
+                               placeholder="Entrez le nom du produit" size="30" name="q">
+                        <button class="btn-primary my-2 my-sm-0" id="button-addon2" type="submit" value="{{ request.GET.q }}">Chercher</button>
                     </div>
                 <script>
                 </script>

@@ -28,19 +28,31 @@
             </div>
             {% endfor %}
             </div>
+
             {% if paginate %}<br>
-              <div class="clearfix"></div>
               <nav aria-label="...">
                 <ul class="pager">
                   {% if favoris.has_previous %}
-                      <a href="?page={{ favoris.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Précédent</a>
+                      <a href="?page={{ favoris.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">&laquo;</a>
+                      {% else %}
+                     <span>&laquo;</span>
                   {% endif %}
+                {% for i in favoris.paginator.page_range %}
+                 {% if favoris.number == i %}
+                        <span>{{ i }} <span class="sr-only">(current)</span></span>
+                      {% else %}
+                       <a href="?page={{ i }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ i }}</a>
+                      {% endif %}
+                    {% endfor %}
                   {% if favoris.has_next %}
-                      <a href="?page={{ favoris.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Suivant</a>
-                  {% endif %}
+                      <a href="?page={{ favoris.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">&raquo;</a>
+                      {% else %}
+                     <span>&raquo;</span>
+                    {% endif %}
                 </ul>
               </nav>
             {% endif %}
+
     {% endif %}
     </header>
 </section>

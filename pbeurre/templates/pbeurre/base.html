@@ -55,8 +55,8 @@
                 {% csrf_token %}
                     <div class="form-inline">
                         <input id="champsearch" type="text"  aria-label="search" aria-describedby="submit"
-                               placeholder="Recherche" size="10" name="query">
-                        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" value="submit">Chercher</button>
+                               placeholder="Recherche" size="10" name="q">
+                        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" value="{{ request.GET.q }}">Chercher</button>
                     </div>
               </form>
           <li class="nav-item">
