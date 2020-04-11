@@ -122,13 +122,6 @@
   border-radius: 5px;
   }
 
-
-#nutri_score:hover, .nutri_score:active{
-  color: white;
-  background-color: #f05f40;
-  text-decoration: none;
-}
-
 #favorite{
   color: #FFFFFF;
   padding: 0 !important;
@@ -209,30 +202,82 @@
 #champsearch {
   background-color: #e5e5e5;
 }
-#nutri_score {
-  z-index: 3;
-  color: #FFFFFF;
-  background-color: #67aec4;
-  position: absolute;
-  border-color: #dadada;
-  border-style: solid;
-  border-radius: 25px;
-  top: 0;
-  right:0;
-  width: 5ch;
-  padding: 10px;
+
+#nutri_score_a {
+    z-index: 3;
+    color: #FFFFFF;
+    background-color: #2ba24f;
+    position: absolute;
+    border: #858e96 1px solid;
+    border-radius: 50%;
+    top: 0;
+    right:0;
+    padding: 20px;
 }
 
+#nutri_score_b {
+    z-index: 3;
+    color: #FFFFFF;
+    background-color: #8dc447;
+    position: absolute;
+    border: #858e96 1px solid;
+    border-radius: 50%;
+    top: 0;
+    right:0;
+    padding: 20px;
+}
+
+#nutri_score_c {
+    z-index: 3;
+    color: #FFFFFF;
+    background-color: #ffd912;
+    position: absolute;
+    border: #858e96 1px solid;
+    border-radius: 50%;
+    top: 0;
+    right:0;
+    padding: 20px;
+}
+
+#nutri_score_d {
+    z-index: 3;
+    color: #FFFFFF;
+    background-color: #f47a03;
+    position: absolute;
+    border: #858e96 1px solid;
+    border-radius: 50%;
+    top: 0;
+    right:0;
+    padding: 20px;
+}
+
+#nutri_score_e {
+    z-index: 3;
+    color: #FFFFFF;
+    background-color: #ec410c;
+    position: absolute;
+    border: #858e96 1px solid;
+    border-radius: 50%;
+    top: 0;
+    right:0;
+    padding: 20px;
+}
 
 #block_food {
-  border: #858e96 1px solid;
-  padding-top: 20px;
-  padding-bottom: 20px;
-  height: content-box;
-  content: inherit;
-  width: content-box;
-  border-radius: 20px;
-  background-color: white;
+    border: #858e96 1px solid;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    height: content-box;
+    content: inherit;
+    width: content-box;
+    border-radius: 20px;
+    background-color: white;
+    animation: 2s slidein;
+}
+
+@keyframes slidein {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 
 #text-food {
