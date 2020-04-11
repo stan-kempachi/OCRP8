@@ -3,8 +3,11 @@
 <header>
     <div class="col-sm-12 col-md-12 ">
     {% if foods %}
+        <span>
     <h4 class="text-center  mx-auto">Vous pouvez remplacer ce produit par :</h4>
+        </span>
     {% endif %}
+
     {% if substitute|length_is:"0" %}
     <div class="col-sm-12 col-md-12 headerImage text-center" id="no_result_text">
       Miséricorde ! Nous n'avons trouvé aucun résultat à cette requête. <br>
@@ -14,10 +17,14 @@
         {% else %}
             <div id="backgroundProduct" class="row">
             {% for food in substitute %}
-            <div   class="col-sm-12 col-md-12 col-lg-4 col-xl-4  headerImage text-center">
+            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4  text-center" style="transition: margin-left 4s 1s">
+            <br>
+            <div id="block_food" >
                 <div id="nutri_score">{{ food.nutri_score }}</div>
                 <a class="img-fluid" href="{{ food.picture }}">
                   <img id="food-image" class="image" src="{{ food.picture }}" alt=""></a>
+            </div>
+                <div id="foods-content">
                 <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:details' food_id=food.id %}">
                     <h6 id="food-name">{{ food.name }}<br></h6></a>
                   {% if user.is_authenticated %}
@@ -36,7 +43,8 @@
                     </form>
                   {% endif %}
                 {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
-            </div>
+                </div>
+                </div>
             {% endfor %}
             </div>
         <br>

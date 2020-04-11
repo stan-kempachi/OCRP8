@@ -33,6 +33,7 @@
 
 #ratatouille{
   height: 400px;
+  margin-left: -50px
 }
 
 #colette{
@@ -217,23 +218,38 @@
   border-style: solid;
   border-radius: 25px;
   top: 0;
-  right:18%;
+  right:0;
   width: 5ch;
   padding: 10px;
 }
 
+
+#block_food {
+  border: #858e96 1px solid;
+  padding-top: 20px;
+  padding-bottom: 20px;
+  height: content-box;
+  content: inherit;
+  width: content-box;
+  border-radius: 20px;
+  background-color: white;
+}
+
 #text-food {
   background-color: rgba(92, 92, 92, 0.5);
-  opacity: 50%;
+  opacity: 80%;
 }
 
 #background-food-image {
+  border: #858e96 1px solid;
+  box-shadow: 6px 6px 12px #858e96;
   image-orientation: initial;
 }
 
 #food-image {
   z-index: 2;
-  border: 2px solid #808991;
+  height: 300px;
+
 }
 
 #table100g {
@@ -250,3 +266,4 @@
   position: center;
   right: 100%;
 }
+
