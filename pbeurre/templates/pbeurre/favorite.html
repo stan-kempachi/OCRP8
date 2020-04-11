@@ -14,10 +14,13 @@
         {% else %}
             <div id="backgroundProduct" class="row">
             {% for food in favori %}
-            <div   class="col-sm-12 col-md-12 col-lg-4 col-xl-4  headerImage text-center">
+            <div   class="col-sm-12 col-md-12 col-lg-4 col-xl-4   text-center">
+            <br>
+                        <div id="block_food" >
                 <div id="nutri_score">{{ food.nutri_score }}</div>
                 <a class="img-fluid" href="{{ food.picture }}">
                   <img id="food-image" class="image" src="{{ food.picture }}" alt=""></a>
+            </div>
                 <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:details' food_id=food.id %}">
                     <h6 id="food-name">{{ food.name }}</h6></a>
                 <form action="{% url 'pbeurre:remove_fav' food_id=food.id %}" method="get" accept-charset="utf-8">
