@@ -212,8 +212,11 @@
     border-radius: 50%;
     top: 0;
     right:0;
-    padding: 20px;
-}
+    height: 70px;
+    width: 70px;
+    text-align: center;
+    line-height: 65px;;
+    }
 
 #nutri_score_b {
     z-index: 3;
@@ -224,8 +227,10 @@
     border-radius: 50%;
     top: 0;
     right:0;
-    padding: 20px;
-}
+    height: 70px;
+    width: 70px;
+    text-align: center;
+    line-height: 65px;;}
 
 #nutri_score_c {
     z-index: 3;
@@ -236,8 +241,10 @@
     border-radius: 50%;
     top: 0;
     right:0;
-    padding: 20px;
-}
+    height: 70px;
+    width: 70px;
+    text-align: center;
+    line-height: 65px;;}
 
 #nutri_score_d {
     z-index: 3;
@@ -248,8 +255,10 @@
     border-radius: 50%;
     top: 0;
     right:0;
-    padding: 20px;
-}
+    height: 70px;
+    width: 70px;
+    text-align: center;
+    line-height: 65px;;}
 
 #nutri_score_e {
     z-index: 3;
@@ -260,8 +269,10 @@
     border-radius: 50%;
     top: 0;
     right:0;
-    padding: 20px;
-}
+    height: 70px;
+    width: 70px;
+    text-align: center;
+    line-height: 65px;;}
 
 #block_food {
     border: #858e96 1px solid;
@@ -281,14 +292,15 @@
 }
 
 #text-food {
-  background-color: rgba(92, 92, 92, 0.5);
-  opacity: 80%;
+    background-color: rgba(92, 92, 92, 0.5);
+    position: center;
 }
 
 #background-food-image {
-  border: #858e96 1px solid;
-  box-shadow: 6px 6px 12px #858e96;
-  image-orientation: initial;
+    border: #858e96 1px solid;
+    box-shadow: 6px 6px 12px #858e96;
+    image-orientation: initial;
+    height: 100%;
 }
 
 #food-image {

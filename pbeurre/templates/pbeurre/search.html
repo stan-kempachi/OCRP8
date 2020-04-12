@@ -1,21 +1,19 @@
 {% extends 'pbeurre/base.html' %}
 {% block content%}
 	{% load static %}
-<body>
     <section >
         <div class="text-center">
             {% for food in foods %}
             <div class="headerImage mx-auto ">
                <div id="background-food-image" class="bg-light py-5" style="background-image:url({{food.picture}})">
-                   <h2 id="text-food" class="text-white font-weight-bold mb-5">
+                   <h2 id="text-food" class="text-white font-weight-bold mb-5)">
                        {{food.name}}<br>
-                        Catégorie : {{ food.category_tags1 }}
                    </h2>
                </div>
             </div>
             {% endfor %}
         </div>
     </section>
+    <br>
 {% include 'pbeurre/list.html' %}
-</body>
 {% endblock%}
