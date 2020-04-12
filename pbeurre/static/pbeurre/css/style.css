@@ -33,7 +33,7 @@
 
 #ratatouille{
   height: 400px;
-  margin-left: -50px
+  margin-left: -70px
 }
 
 #colette{
@@ -297,7 +297,7 @@
 
 #text-food {
     text-align: center;
-    line-height: 100px;
+    line-height: 100xpx;
 }
 
 #background-food-image {
