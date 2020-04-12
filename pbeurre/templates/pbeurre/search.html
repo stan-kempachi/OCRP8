@@ -2,12 +2,12 @@
 {% block content%}
 	{% load static %}
     <section >
-        <div class="text-center">
+        <div class="text-center" style="padding-top: 40px">
             {% for food in foods %}
-            <div class="headerImage mx-auto ">
+            <div class="headerImage mx-auto" id="backgroundProduct" style="padding-top: 5px; padding-bottom: 5px">
                <div id="background-food-image" class="bg-light py-5" style="background-image:url({{food.picture}})">
                    <h2 id="text-food" class="text-white font-weight-bold mb-5)">
-                       {{food.name}}<br>
+                       {{food.name}}
                    </h2>
                </div>
             </div>
@@ -15,5 +15,6 @@
         </div>
     </section>
     <br>
+
 {% include 'pbeurre/list.html' %}
 {% endblock%}
