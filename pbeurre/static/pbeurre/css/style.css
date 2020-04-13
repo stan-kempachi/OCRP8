@@ -61,11 +61,18 @@
   font-size: large;
 }
 
-#backgroundProduct{
-  color: #FFFFFF;
-  margin-top:2%;
-  padding-bottom:4%;
-  background-color: #d88609;
+#backgroundProduct {
+    color: #FFFFFF;
+    margin-top: 2%;
+    padding-bottom: 4%;
+    background-color: #d88609;
+}
+
+
+#backgroundProduct2{
+    padding-bottom: 5px;
+    color: #FFFFFF;
+    background-color: #d88609;
 }
 
 #backgroundProduct:link {
