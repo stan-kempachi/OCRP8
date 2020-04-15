@@ -1,6 +1,4 @@
 from django import forms
-from dal import autocomplete
-from pbeurre.models import Food
 
 
 class LoginForm(forms.Form):
