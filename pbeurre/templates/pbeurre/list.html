@@ -10,11 +10,10 @@
         Même pas de quoi se ronger la chique ! <br>
       Lancez de nouveau votre ligne !
     </div>
-    {% else %}        <br>
-                    {% if paginate %}
-                <div class="mx-auto  text-center">
+    {% else %}
+            {% if paginate %}
+            <div class="mx-auto  text-center">
               <nav aria-label="...">
-
                 {% if substitute.has_other_pages %}
                     {% if substitute.has_previous %}
                       <a href="?page={{ substitute.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo;</a>
@@ -29,7 +28,7 @@
                       {% endif %}
                     {% endfor %}
                     {% if substitute.has_next %}
-                   <a href="?page={{ substitute.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a>
+                    <a href="?page={{ substitute.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a>
                     {% else %}
                      <span>&raquo;</span>
                     {% endif %}

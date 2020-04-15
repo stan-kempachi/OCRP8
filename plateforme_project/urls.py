@@ -17,13 +17,14 @@ from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
 
+
 from pbeurre import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^pbeurre/', include(('pbeurre.urls', 'pbeurre'), namespace='pbeurre')),
     url(r'^content', admin.site.urls ),
-    url(r'^search/$', views.search)
+    url(r'^search/$', views.search),
 ]
 
 if settings.DEBUG:

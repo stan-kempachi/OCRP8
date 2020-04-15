@@ -10,8 +10,8 @@ from django.contrib.auth.models import User
 from .models import Food, Backup
 from .forms import RegisterForm, SearchForm, LoginForm
 
-
 key = '4bf8zx8t^se760vf#$sm^p_%j=*i=nccqjb#kp(2ug+6e51_(*'
+
 
 def index(request):
     form = SearchForm(request.POST)
@@ -19,6 +19,50 @@ def index(request):
         'form': form
     }
     return render(request, 'pbeurre/index.html', context)
+
+
+def search(request, ):
+    if request.GET:
+        user = request.user
+        query = request.GET.get('q')
+        food = Food.objects.filter(name__icontains=query)[:1]
+        foo = get_object_or_404(food)
+        print(foo.category_tags1)
+        substitute_list = Food.objects.filter(Q(name__icontains=query)
+                                              & Q(category_tags1__icontains=foo.category_tags1)
+                                              | Q(name__icontains=query)
+                                              & Q(category_tags2__icontains=foo.category_tags1)
+                                              | Q(category_tags1__icontains=foo.category_tags1))
+        substitute_list = substitute_list.order_by('nutri_score')
+        favori = Food.objects.filter(Q(backup__user_id=user.id))
+        # paginator settings
+        page = request.GET.get('page')
+        paginator = Paginator(substitute_list, 12)
+        try:
+            substitute = paginator.page(page)
+        except PageNotAnInteger:
+            substitute = paginator.page(1)
+        except EmptyPage:
+            substitute = paginator.page(paginator.num_pages)
+        context = {
+            'favori': favori,
+            'foods': food,
+            'substitute': substitute,
+            'paginate': True,
+        }
+        return render(request, 'pbeurre/search.html', context)
+    else:
+        return render(request, 'pbeurre/index.html')
+
+
+def details(request, food_id):
+    form = SearchForm(request.POST)
+    food = Food.objects.get(id=food_id)
+    context = {
+        'food': food,
+        'form': form
+    }
+    return render(request, 'pbeurre/details.html', context)
 
 
 def login_view(request):
@@ -39,46 +83,6 @@ def login_view(request):
 
 def mention_legale(request):
     return render(request, 'pbeurre/mentionlegal.html')
-
-
-def search(request):
-    if request.GET:
-        user = request.user
-        query = request.GET.get('q')
-        food = Food.objects.filter(name__icontains=query)[:1]
-        foo = get_object_or_404(food)
-        substitute_list = Food.objects.filter(name__icontains=query,
-                                              ).order_by('nutri_score')
-        favori = Food.objects.filter(Q(backup__user_id=user.id))[1:]
-        # paginator settings
-        page = request.GET.get('page')
-        paginator = Paginator(substitute_list, 12)
-        try:
-            substitute = paginator.page(page)
-        except PageNotAnInteger:
-            substitute = paginator.page(1)
-        except EmptyPage:
-            substitute = paginator.page(paginator.num_pages)
-        context = {
-            'favori': favori,
-            'foods': food,
-            'substitute': substitute,
-            'paginate': True,
-
-        }
-        return render(request, 'pbeurre/search.html', context)
-    else:
-        return render(request, 'pbeurre/index.html')
-
-
-def details(request, food_id):
-    form = SearchForm(request.POST)
-    food = Food.objects.get(id=food_id)
-    context = {
-        'food': food,
-        'form': form
-    }
-    return render(request, 'pbeurre/details.html', context)
 
 
 def register_view(request):
@@ -149,11 +153,8 @@ def add_favorite(request, food_id):
 
 
 @login_required()
-def remove_favorite(request, food_id):
+def favorite(request):
     user = request.user
-    rem = Food.objects.filter(backup__user_id=user.id)
-    rm = rem.get(id=food_id)
-    rm.delete()
     backup = Food.objects.filter(backup__user_id=user.id).order_by('nutri_score')
     # paginator settings
     page = request.GET.get('page')
@@ -173,8 +174,11 @@ def remove_favorite(request, food_id):
 
 
 @login_required()
-def favorite(request):
+def remove_favorite(request, food_id):
     user = request.user
+    rem = Food.objects.filter(backup__user_id=user.id)
+    rm = rem.get(id=food_id)
+    rm.delete()
     backup = Food.objects.filter(backup__user_id=user.id).order_by('nutri_score')
     # paginator settings
     page = request.GET.get('page')
