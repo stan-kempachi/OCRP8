@@ -303,6 +303,7 @@
 }
 
 #text-food {
+    filter: drop-shadow(2px 2px 2px black);
     text-align: center;
     line-height: 100px;
 }
