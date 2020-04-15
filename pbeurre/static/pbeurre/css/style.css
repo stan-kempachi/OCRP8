@@ -304,7 +304,7 @@
 
 #text-food {
     text-align: center;
-    line-height: 100xpx;
+    line-height: 100px;
 }
 
 #background-food-image {
@@ -334,3 +334,8 @@
   right: 100%;
 }
 
+.fa-sign-in-alt{
+      color: white;
+      font-size: 25px;
+      filter: drop-shadow(2px 2px 2px black);
+}
