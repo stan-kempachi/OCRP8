@@ -1,22 +1,23 @@
 {% extends 'pbeurre/base.html' %}
+{% load static %}
 {% block content%}
-	{% load static %}
-<body>
-    <section >
-    <div class="text-center">
-    <div class="row1 headerImage mx-auto ">
-    <div id="background-food-image" class="bg-light py-5" style="background-image:url({{food.picture}})">
-       <h2 id="text-food" class="text-white font-weight-bold mb-5">
-         {{food.name}}<br>
+    <section class="headerImage">
+        <div class="text-center" >
+            <div id="backgroundProduct2">
+            <div class="headerImage mx-auto "style="padding-top: 5px">
+               <div  id="background-food-image" class="bg-light py-5" style="background-image:url({{food.picture}}) ">
+                   <h2 id="text-food" class="text-white font-weight-bold mb-5">
+                       {{food.name}}<br>
             Catégorie : {{ food.category_tags1 }}
        </h2>
     </div>
     </div>
     </div>
+    </div>
     </section>
-    <section>
+    <section class="page-section">
       <div class="row">
-        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 addmargintop text-center">
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 text-center">
           {% if food.nutri_score == 'a' %}
           <img src="{% static 'pbeurre/img/nutriscore-a.svg'%}" alt="">
           {% endif %}
@@ -33,7 +34,7 @@
           <img src="{% static 'pbeurre/img/nutriscore-e.svg'%}" alt="">
           {% endif %}
         </div>
-        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 addmargintop ">
+        <div class="col-sm-12 col-md-12 col-lg-6 col-xl-6 " >
             <h4>Repères nutritionnels pour 100 g : </h4>
             <h5><li>Matières grasses / Lipides : {{food.repere_fat100g}} g</li>
             <li>Acides gras saturés : {{food.repere_saturatedfat100g}} g</li>
@@ -41,10 +42,9 @@
             <li>   Sel : {{food.repere_saltunit}} g</li></h5>
         </div>
       </div>
-    </section>
     <br><br>
     <div class="col-sm-12 col-md-12 col-lg-12 col-xl-12 productPaper text-center">
-      <a class="openfoodfacts" href="{{food.url}}">voir la fiche d'openfoodfacts</a>
+      <a class="openfoodfacts" href="{{food.url}}" target="_blank">Voir la fiche d'Openfoodfacts</a>
     </div>
-</body>
+    </section>
 {% endblock%}
