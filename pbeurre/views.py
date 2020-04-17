@@ -22,17 +22,48 @@ def index(request):
 
 
 def search(request, ):
+    global substitute_list
     if request.GET:
         user = request.user
         query = request.GET.get('q')
         food = Food.objects.filter(name__icontains=query)[:1]
         foo = get_object_or_404(food)
-        print(foo.category_tags1)
-        substitute_list = Food.objects.filter(Q(name__icontains=query)
-                                              & Q(category_tags1__icontains=foo.category_tags1)
-                                              | Q(name__icontains=query)
-                                              & Q(category_tags2__icontains=foo.category_tags1)
-                                              | Q(category_tags1__icontains=foo.category_tags1))
+        print(foo.nutri_score)
+        if foo.nutri_score == 'a':
+            substitute_list = Food.objects.filter(Q(name__icontains=query)
+                                                  & Q(category_tags1__exact=foo.category_tags1)
+                                                  & Q(nutri_score__lte=foo.nutri_score)
+                                                  )
+        if foo.nutri_score == 'b':
+            substitute_list = Food.objects.filter(Q(name__icontains=query)
+                                                  & Q(category_tags1__exact=foo.category_tags1)
+                                                  & Q(nutri_score__lte=foo.nutri_score)
+                                                  )
+
+        if foo.nutri_score == 'c':
+            substitute_list = Food.objects.filter(Q(name__icontains=query)
+                                                  & Q(category_tags1__exact=foo.category_tags1)
+                                                  & Q(nutri_score__lt=foo.nutri_score)
+                                                  )
+        if foo.nutri_score == 'd':
+            substitute_list = Food.objects.filter(Q(name__icontains=query)
+                                                  & Q(category_tags1__exact=foo.category_tags1)
+                                                  & Q(nutri_score__lt=foo.nutri_score)
+                                                  )
+        if foo.nutri_score == 'e':
+            substitute_list = Food.objects.filter(Q(name__icontains=query)
+                                                  & Q(category_tags1__exact=foo.category_tags1)
+                                                  & Q(nutri_score__lt=foo.nutri_score)
+                                                  )
+            if len(substitute_list) == 0:
+                try:
+                    substitute_list = Food.objects.filter(Q(category_tags1__exact=foo.category_tags1)
+                                                          & Q(nutri_score__lt=foo.nutri_score))
+                except:
+                    pass
+
+
+
         substitute_list = substitute_list.order_by('nutri_score')
         favori = Food.objects.filter(Q(backup__user_id=user.id))
         # paginator settings

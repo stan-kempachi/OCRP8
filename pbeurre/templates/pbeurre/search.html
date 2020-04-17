@@ -5,18 +5,33 @@
         <div class="text-center">
             {% for food in foods %}
             <div id="backgroundProduct2">
-            <div class="headerImage mx-auto "style="padding-top: 5px">
-               <div  id="background-food-image" class="bg-light py-5" style="background-image:url({{food.picture}}) ">
-                   <h2 id="text-food" class="text-white font-weight-bold mb-5">
-                       {{food.name}}
-                   </h2>
-               </div>
-            </div>
+                <div class="headerImage mx-auto "style="padding-top: 5px">
+                   <div  id="background-food-image" class="bg-light py-5" style="background-image:url({{food.picture}}) ">
+                       <h2 id="text-food" class="text-white font-weight-bold mb-5">
+                           {{food.name}}
+                           <div class="row text-center mx-auto" style="position:relative; right: 680px; bottom: 25px ">
+                               {% if food.nutri_score == "a" %}
+                                <div id="nutri_score_a" >{{ food.nutri_score|upper }}</div>
+                                {% endif %}
+                                {% if food.nutri_score == "b" %}
+                                <div id="nutri_score_b">{{ food.nutri_score|upper }}</div>
+                                {% endif %}
+                                {% if food.nutri_score == "c" %}
+                                <div id="nutri_score_c" >{{ food.nutri_score|upper }}</div>
+                                {% endif %}
+                                {% if food.nutri_score == "d" %}
+                                <div id="nutri_score_d">{{ food.nutri_score|upper }}</div>
+                                {% endif %}
+                                {% if food.nutri_score == "e" %}
+                                <div id="nutri_score_e">{{ food.nutri_score|upper }}</div>
+                                {% endif %}
+                           </div>
+                       </h2>
+                   </div>
+                </div>
             </div>
             {% endfor %}
-        </div>
-    <br>
+        </div><br>
     </section>
-
 {% include 'pbeurre/list.html' %}
 {% endblock%}
