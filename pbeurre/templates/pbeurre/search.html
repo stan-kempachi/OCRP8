@@ -7,9 +7,9 @@
             <div id="backgroundProduct2">
                 <div class="headerImage mx-auto "style="padding-top: 5px">
                    <div  id="background-food-image" class="bg-light py-5" style="background-image:url({{food.picture}}) ">
-                       <h2 id="text-food" class="text-white font-weight-bold mb-5">
-                           {{food.name}}
-                           <div class="row text-center mx-auto" style="position:relative; right: 680px; bottom: 25px ">
+                       <h2><a href="{% url 'pbeurre:details' food_id=food.id %}" class="text-white font-weight-bold mb-5" id="text-food">
+                                   {{ food.name }}</a></h2>
+                           <div id="text-food" class="row text-center mx-auto" style="position:relative; right: 680px; bottom: 25px ">
                                {% if food.nutri_score == "a" %}
                                 <div id="nutri_score_a" >{{ food.nutri_score|upper }}</div>
                                 {% endif %}
