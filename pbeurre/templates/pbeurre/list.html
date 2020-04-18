@@ -1,5 +1,4 @@
-<section class="page-section">
-    <div class="col-sm-12 col-md-12 ">
+<section class="col-sm-12 col-md-12 page-section"style="top: -80px">
     {% if foods %}
     <h4 class="text-center mx-auto">Vous pouvez remplacer ce produit par :</h4>
     {% endif %}
@@ -85,7 +84,6 @@
             {% if paginate %}
                 <div class="mx-auto  text-center">
               <nav aria-label="...">
-
                 {% if substitute.has_other_pages %}
                     {% if substitute.has_previous %}
                       <a href="?page={{ substitute.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo;</a>
@@ -109,8 +107,6 @@
             </div>
         {% endif %}
         <br>
-
     {% endif %}
-    </div>
 </section>
 

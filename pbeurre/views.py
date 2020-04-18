@@ -55,15 +55,12 @@ def search(request, ):
                                                   & Q(category_tags1__exact=foo.category_tags1)
                                                   & Q(nutri_score__lt=foo.nutri_score)
                                                   )
-            if len(substitute_list) == 0:
-                try:
-                    substitute_list = Food.objects.filter(Q(category_tags1__exact=foo.category_tags1)
-                                                          & Q(nutri_score__lt=foo.nutri_score))
-                except:
-                    pass
-
-
-
+        if len(substitute_list) == 0:
+            try:
+                substitute_list = Food.objects.filter(Q(category_tags1__exact=foo.category_tags1)
+                                                      & Q(nutri_score__lt=foo.nutri_score))
+            except:
+                pass
         substitute_list = substitute_list.order_by('nutri_score')
         favori = Food.objects.filter(Q(backup__user_id=user.id))
         # paginator settings
