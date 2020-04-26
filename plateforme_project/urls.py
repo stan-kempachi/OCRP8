@@ -25,6 +25,7 @@ urlpatterns = [
     url(r'^pbeurre/', include(('pbeurre.urls', 'pbeurre'), namespace='pbeurre')),
     url(r'^content', admin.site.urls ),
     url(r'^search/$', views.search),
+
 ]
 
 if settings.DEBUG:

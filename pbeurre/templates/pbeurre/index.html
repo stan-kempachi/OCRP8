@@ -14,8 +14,7 @@
               Trouvez un produit de substitution pour ceux que vous consommez tous les jours
           </h2>
           <div class="row align-items-center justify-content-center text-center">
-
-              <form action="{% url 'pbeurre:search' %}" method="get" accept-charset="utf-8">
+              <form action="{% url 'pbeurre:search' %}" method="GET" accept-charset="utf-8">
                 {% csrf_token %}
                     <div class="form-group">
                         <input id="searchForm" type="text"  aria-label="Food Name" aria-describedby="button-addon2"
@@ -23,7 +22,19 @@
                         <button class="btn-primary my-2 my-sm-0" id="button-addon2" type="submit" value="{{ request.GET.q }}">Chercher</button>
                     </div>
               </form>
-
+{#              <script>#}
+{#                    $(document).ready(function(){#}
+{#                        $("#searchForm").autocomplete({#}
+{#                            source: "/",#}
+{#                            minLength: 1,#}
+{#                            open: function(){#}
+{#                                setTimeout(function () {#}
+{#                                    $('.ui-autocomplete').css('z-index', 99);#}
+{#                                }, 0);#}
+{#                            }#}
+{#                          });#}
+{#                    });#}
+{#            </script>#}
           </div>
         </div>
       </div>

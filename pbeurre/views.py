@@ -5,6 +5,42 @@ from django.db.models import Q
 from django.contrib.auth import authenticate, login, logout
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+import json
+# personal import
+from .models import Food, Backup
+from .forms import RegisterForm, SearchForm, LoginForm
+
+key = '4bf8zx8t^se760vf#$sm^p_%j=*i=nccqjb#kp(2ug+6e51_(*'
+
+
+def index(request):
+    form = SearchForm(request.POST)
+    if request.is_ajax():
+        q = request.GET.get('q').capitalize()
+        search_qs = Food.objects.filter(name__startswith=q)
+        results = []
+        print(q)
+        for r in search_qs:
+            results.append(r.name)
+        data = json.dumps(results)
+    else:
+        data = 'fail'
+    mimetype = 'application/json'
+    context = {
+        'form': form,
+        'data': data,
+        'mimetype': mimetype
+    }
+    return render(request, 'pbeurre/index.html', context)
+
+
+from django.shortcuts import render, redirect, get_object_or_404, HttpResponse
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+from django.contrib import messages
+from django.db.models import Q
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 # personal import
 from .models import Food, Backup
@@ -28,7 +64,6 @@ def search(request, ):
         query = request.GET.get('q')
         food = Food.objects.filter(name__icontains=query)[:1]
         foo = get_object_or_404(food)
-        print(foo.nutri_score)
         if foo.nutri_score == 'a':
             substitute_list = Food.objects.filter(Q(name__icontains=query)
                                                   & Q(category_tags1__exact=foo.category_tags1)
@@ -62,6 +97,7 @@ def search(request, ):
             except:
                 pass
         substitute_list = substitute_list.order_by('nutri_score')
+        substitute_list = substitute_list.exclude(name=foo.name)
         favori = Food.objects.filter(Q(backup__user_id=user.id))
         # paginator settings
         page = request.GET.get('page')
@@ -81,6 +117,7 @@ def search(request, ):
         return render(request, 'pbeurre/search.html', context)
     else:
         return render(request, 'pbeurre/index.html')
+
 
 
 def details(request, food_id):
@@ -223,3 +260,5 @@ def remove_favorite(request, food_id):
         'favoris': favoris
     }
     return render(request, 'pbeurre/favorite.html', context)
+
+
