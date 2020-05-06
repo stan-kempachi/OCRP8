@@ -7,6 +7,7 @@ colorama==0.4.1
 dj-database-url==0.5.0
 Django==3.0.4
 django-appconf==1.0.4
+-e git+https://github.com/yourlabs/django-autocomplete-light.git@d01415e57b4ed1d735065b6d2b55ccda22e5d940#egg=django_autocomplete_light
 django-debug-toolbar==2.0
 django-heroku==0.3.1
 django-select2==7.2.3

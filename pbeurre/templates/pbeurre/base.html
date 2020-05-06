@@ -16,11 +16,13 @@
     <link rel="stylesheet" type="text/css" href="{% static 'pbeurre/css/icons.css'%}">
 
   <!-- JQuery -->
-    <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
-    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript">
-    </script> <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.16/jquery-ui.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+{#    <link href="{% static 'selectable/css/dj.selectable.css' %}" type="text/css" media="all" rel="stylesheet">#}
+{#    <script type="text/javascript" src="{% static 'pbeurre/selectable/js/jquery.dj.selectable.js' %}"></script>#}
 
-  <!-- Bootstrap core CSS -->
+    <!-- Bootstrap core CSS -->
   <link href="{% static 'pbeurre/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
 
   <!-- Custom fonts for this template -->
@@ -35,11 +37,8 @@
   <link href="{% static 'pbeurre/css/creative.css' %}" rel="stylesheet">
   <link href="{% static 'pbeurre/css/style.css' %}" rel="stylesheet">
 
-
 </head>
-
 <body id="page-top">
-
   <!-- Navigation -->
   <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
     <div class="container">
@@ -53,12 +52,12 @@
         <ul class="navbar-nav ml-auto my-2 my-lg-0">
             <form class="form-inline" action="{% url 'pbeurre:search' %}" method="get" accept-charset="utf-8">
                 {% csrf_token %}
-                    <div class="form-inline">
-                        <input id="champsearch" type="text"  aria-label="search" aria-describedby="submit"
-                               placeholder="Recherche" size="10" name="q">
-                        <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" value="{{ request.GET.q }}">Chercher</button>
-                    </div>
-              </form>
+                <div class="form-inline">
+                    <input id="champsearch" type="text"  aria-label="search" aria-describedby="submit"
+                           placeholder="Recherche" size="10" name="q">
+                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" value="{{ request.GET.q }}">Chercher</button>
+                </div>
+            </form>
           <li class="nav-item">
             <a class="nav-link js-scroll-trigger" href="{% url 'pbeurre:mon_compte' %}"><i class="fas fa-user"></i></a>
           </li>

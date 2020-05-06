@@ -100,12 +100,10 @@
                     {% if substitute.has_next %}
                    <a href="?page={{ substitute.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a>
                     {% else %}
-                     <span>&raquo;</span>
                     {% endif %}
                 {% endif %}
               </nav>
             </div>
         {% endif %}
-        <br>
     {% endif %}
 </section>

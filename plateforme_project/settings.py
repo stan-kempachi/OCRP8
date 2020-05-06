@@ -26,18 +26,6 @@ ALLOWED_HOSTS = ['127.0.0.1', 'pbeurre.herokuapp.com']
 
 # Application definition
 
-INSTALLED_APPS = [
-    'pbeurre',
-    'django.contrib.admin',
-    'django.contrib.auth',
-    'django.contrib.contenttypes',
-    'django.contrib.sessions',
-    'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'django.contrib.sites',
-    'debug_toolbar',
-    'widget_tweaks',
-]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -51,6 +39,19 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.locale.LocaleMiddleware',
+]
+
+INSTALLED_APPS = [
+    'pbeurre',
+    'django.contrib.admin',
+    'django.contrib.auth',
+    'django.contrib.contenttypes',
+    'django.contrib.sessions',
+    'django.contrib.messages',
+    'django.contrib.staticfiles',
+    'django.contrib.sites',
+    'debug_toolbar',
+    'widget_tweaks',
 ]
 
 ROOT_URLCONF = 'plateforme_project.urls'

@@ -38,13 +38,30 @@
             {% for food in favori %}
             <div   class="col-sm-12 col-md-12 col-lg-4 col-xl-4   text-center">
             <br>
-            <div id="block_food" >
-                <div id="nutri_score">{{ food.nutri_score }}</div>
+            <div id="block_food" ><h3>
+                {% if food.nutri_score == "a" %}
+                <div id="nutri_score_a">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                {% if food.nutri_score == "b" %}
+                <div id="nutri_score_b">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                {% if food.nutri_score == "c" %}
+                <div id="nutri_score_c">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                {% if food.nutri_score == "d" %}
+                <div id="nutri_score_d">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                {% if food.nutri_score == "e" %}
+                <div id="nutri_score_e">{{ food.nutri_score|upper }}</div>
+                {% endif %}
                 <a class="img-fluid" href="{{ food.picture }}">
                   <img id="food-image" class="image" src="{{ food.picture }}" alt=""></a>
-            </div>
+            </h3></div>
+
+                <div id="foods-content">
                 <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:details' food_id=food.id %}">
-                    <h6 id="food-name">{{ food.name }}</h6></a>
+                    <h6 id="food-name">{{ food.name }}<br></h6></a>
+                </div>
                 <form action="{% url 'pbeurre:remove_fav' food_id=food.id %}" method="get" accept-charset="utf-8">
                 {% csrf_token %}
                     <button class="btn-primary my-2 my-sm-0" type="submit" value="submit"><i class="far fa-trash-alt">&nbspSupprimer</i></button>

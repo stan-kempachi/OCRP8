@@ -4,3 +4,4 @@ __pycache__/
 pbeurre/__pycache__
 pbeurre/migrations/__pycache__
 plateforme_project/__pycache__/
+tmp/
