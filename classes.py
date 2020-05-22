@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 from constantes import category_name
+
+
 class Categories():
     """Classe représentant la table 'Categories' de la base de données"""
 
@@ -28,10 +30,6 @@ class Food:
         try:
             self.name = data_from_off["product_name_fr"]
             pass
-            try:
-                self.category_tags1 = category_name
-            except KeyError:
-                pass
             try:
                 self.category_tags2 = data_from_off["categories"].split(",")
             except KeyError:

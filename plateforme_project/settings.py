@@ -4,6 +4,8 @@ import dj_database_url
 
 import django_heroku
 
+os.environ['DJANGO_SETTINGS_MODULE'] = 'plateforme_project.settings'
+
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -86,7 +88,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pbeurre',
         'USER': 'Stan',
-        'PASSWORD': '',
+        'PASSWORD': 'Kempachi94',
         'HOST': '',
         'PORT': '5432',
     }

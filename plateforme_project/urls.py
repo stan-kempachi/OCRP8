@@ -23,7 +23,7 @@ from pbeurre import views
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^pbeurre/', include(('pbeurre.urls', 'pbeurre'), namespace='pbeurre')),
-    url(r'^content', admin.site.urls ),
+    url(r'^admin', admin.site.urls),
 ]
 
 if settings.DEBUG:
