@@ -22,6 +22,7 @@ from pbeurre import views
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
+    url(r'^mentionlegal/$', views.mention_legale, name="mention"),
     url(r'^pbeurre/', include(('pbeurre.urls', 'pbeurre'), namespace='pbeurre')),
     url(r'^admin', admin.site.urls),
 ]
