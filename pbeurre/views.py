@@ -27,6 +27,7 @@ def search(request, ):
         query = request.GET.get('q')
         food = Food.objects.filter(name__icontains=query)[:1]
         foo = get_object_or_404(food)
+        substitute_list = []
         if foo.nutri_score == 'a':
             substitute_list = Food.objects.filter(Q(name__icontains=query)
                                                   & Q(category_tags2__icontains=foo.category)
@@ -84,7 +85,7 @@ def search(request, ):
 
 def details(request, food_id):
     form = SearchForm(request.POST)
-    food = Food.objects.get(id=food_id)
+    food = get_object_or_404(Food, id=food_id)
     context = {
         'food': food,
         'form': form
