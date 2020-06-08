@@ -10,6 +10,7 @@ from django.contrib.auth.models import User
 from .models import Food, Backup
 from .forms import RegisterForm, SearchForm, LoginForm
 
+
 key = '4bf8zx8t^se760vf#$sm^p_%j=*i=nccqjb#kp(2ug+6e51_(*'
 
 
@@ -63,9 +64,10 @@ def search(request, ):
         substitute_list = substitute_list.order_by('nutri_score')
         substitute_list = substitute_list.exclude(name=foo.name)
         favori = Food.objects.filter(Q(backup__user_id=user.id))
+
         # paginator settings
         page = request.GET.get('page')
-        paginator = Paginator(substitute_list, 12)
+        paginator = Paginator(substitute_list, 6)
         try:
             substitute = paginator.page(page)
         except PageNotAnInteger:
