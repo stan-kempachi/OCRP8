@@ -35,15 +35,15 @@ class TestUserTakesTheTest(LiveServerTestCase):
         ActionChains(self.driver).click(login_icon).perform()
 
     def clicks_on_save(self):
-        print(self.driver.page_source)
         add_icon = WebDriverWait(self.driver, 5).until(
             EC.presence_of_all_elements_located((By.ID, "favbouton")))
         add_icon[0].click()
 
-    def click_on_favoris(self):
-        fav_ico, = WebDriverWait(self.driver, 5).until(
-            EC.element_to_be_clickable((By.ID, "carot")))
-        ActionChains(self.driver).click(fav_ico).perform()
+    def click_on_backup(self):
+        print(self.driver.page_source)
+        fav_ico = WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located((By.ID, "carot")))
+        fav_ico.click()
 
     def enter_text_on_login_fields(self):
         username = 'Stan'
@@ -78,46 +78,51 @@ class TestUserTakesTheTest(LiveServerTestCase):
             EC.presence_of_element_located((By.LINK_TEXT, "S'enregistrer")))
         ActionChains(self.driver).click(register_link).perform()
 
-    # def test_user_searches(self):
-    #     self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
-    #     self.submit_text_on_placeholder('nutella')  # Il saisit le texte dans la barre de recherche
-    #     time.sleep(5)  # temps de chargement de la page
-    #     print(self.driver.page_source)
-    #     assert 'Vous pouvez remplacer ce produit par' in self.driver.page_source  # check the returned result
+    def test_user_searches(self):
+        self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
+        self.submit_text_on_placeholder('nutella')  # Il saisit le texte dans la barre de recherche
+        time.sleep(5)  # temps de chargement de la page
+        print(self.driver.page_source)
+        assert 'Vous pouvez remplacer ce produit par' in self.driver.page_source  # check the returned result
 
-    # def test_user_login(self):
-    #     self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
-    #     self.clicks_on_login()  # Il click sur l'icone login
-    #     self.enter_text_on_login_fields()
-    #     time.sleep(3)
-    #     print(self.driver.page_source)
-    #     assert 'Du gras, oui, mais de qualite!' in self.driver.page_source
+    def test_user_login(self):
+        self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
+        self.clicks_on_login()  # Il click sur l'icone login
+        self.enter_text_on_login_fields()
+        time.sleep(3)
+        print(self.driver.page_source)
+        assert 'Du gras, oui, mais de qualite!' in self.driver.page_source
 
-    # def test_user_register(self):
-    #     self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
-    #     self.clicks_on_login()  # Il click sur l'icone login
-    #     time.sleep(3)
-    #     self.click_on_register()  # Il click sur le lien S'enregistrer
-    #     time.sleep(3)
-    #     self.enter_logs_on_fields()
-    #     time.sleep(3)
-    #     print(self.driver.page_source)
-    #     assert 'Du gras, oui, mais de qualite!' in self.driver.page_source
+    def test_user_register(self):
+        self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
+        self.clicks_on_login()  # Il click sur l'icone login
+        time.sleep(3)
+        self.click_on_register()  # Il click sur le lien S'enregistrer
+        time.sleep(3)
+        self.enter_logs_on_fields()
+        time.sleep(3)
+        print(self.driver.page_source)
+        assert 'Du gras, oui, mais de qualite!' in self.driver.page_source
 
     def test_user_add_backup(self):
         self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
+        self.clicks_on_login()
+        time.sleep(3)  # temps de chargement de la page
+        self.enter_text_on_login_fields()
+        time.sleep(3)  # temps de chargement de la page
         self.submit_text_on_placeholder('nutella')  # Il saisit le texte dans la barre de recherche
         time.sleep(3)  # temps de chargement de la page
         self.clicks_on_save()
         time.sleep(3)  # temps de chargement de la page
+        assert 'Vos Produits Favoris :' in self.driver.page_source
+
+    def test_user_acces_to_backup(self):
+        self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
+        time.sleep(3)  # temps de chargement de la page
+        self.clicks_on_login()
+        time.sleep(3)  # temps de chargement de la page
         self.enter_text_on_login_fields()
-        time.sleep(3)
-        self.click_on_favoris()
-        time.sleep(3)
-
-
-
-
-
-
-
+        time.sleep(3)  # temps de chargement de la page
+        self.click_on_backup()
+        time.sleep(3)  # temps de chargement de la page
+        assert 'Vos Produits Favoris :' in self.driver.page_source
