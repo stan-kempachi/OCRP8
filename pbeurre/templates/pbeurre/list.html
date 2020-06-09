@@ -66,13 +66,13 @@
                      {% else %}
                      <form action="{% url 'pbeurre:add_favorite' food_id=food.id %}" method="get" accept-charset="utf-8">
                 {% csrf_token %}
-                    <button class="btn-primary my-2 my-sm-0" type="submit" value="submit"><i class="far fa-trash-alt">&nbsp Sauvegarder</i></button>
+                    <button class="btn-primary my-2 my-sm-0" id="favbouton" type="submit" value="submit"><i class="far fa-trash-alt">&nbsp Sauvegarder</i></button>
                     </form>
                       {% endif %}
                  {% else %}
                      <form action="{% url 'pbeurre:add_favorite' food_id=food.id %}" method="get" accept-charset="utf-8">
                 {% csrf_token %}
-                    <button class="btn-primary my-2 my-sm-0" type="submit" value="submit"><i class="far fa-trash-alt">&nbsp Sauvegarder</i></button>
+                    <button class="btn-primary my-2 my-sm-0" id="favbouton" type="submit" value="submit"><i class="far fa-trash-alt">&nbsp Sauvegarder</i></button>
                     </form>
                   {% endif %}
                 {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}

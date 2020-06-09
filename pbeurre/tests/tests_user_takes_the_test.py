@@ -13,6 +13,9 @@ class TestUserTakesTheTest(LiveServerTestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome()
+        options = webdriver.ChromeOptions()
+        options.add_argument("--start-maximized")
+        self.driver = webdriver.Chrome(chrome_options=options)
         self.driver.implicitly_wait(5)
 
     def tearDown(self):
@@ -26,61 +29,95 @@ class TestUserTakesTheTest(LiveServerTestCase):
         placeholder.send_keys(text)
         ActionChains(self.driver).click(self.driver.find_element_by_id('button-addon2')).perform()
 
-    # def test_user_searches(self):
-    #     self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
-    #     self.submit_text_on_placeholder('nutella')  # Il saisit le texte dans la barre de recherche
-    #     time.sleep(5)  # temps de chargement de la page
-    #     self.assertIn('Vous pouvez remplacer ce produit par', self.driver.page_source)  # check the returned result
-
     def clicks_on_login(self):
         login_icon = WebDriverWait(self.driver, 5).until(
             EC.presence_of_element_located((By.ID, "log")))
         ActionChains(self.driver).click(login_icon).perform()
+
+    def clicks_on_save(self):
+        print(self.driver.page_source)
+        add_icon = WebDriverWait(self.driver, 5).until(
+            EC.presence_of_all_elements_located((By.ID, "favbouton")))
+        add_icon[0].click()
+
+    def click_on_favoris(self):
+        fav_ico, = WebDriverWait(self.driver, 5).until(
+            EC.element_to_be_clickable((By.ID, "carot")))
+        ActionChains(self.driver).click(fav_ico).perform()
+
+    def enter_text_on_login_fields(self):
+        username = 'Stan'
+        password = 'Stanpassword'
+        username_field = WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located((By.ID, "email")))
+        username_field.send_keys(username)
+        password_add = WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located((By.ID, "id_password")))
+        password_add.send_keys(password)
+        time.sleep(3)
+        ActionChains(self.driver).click(self.driver.find_element_by_class_name('seConnecterButton')).perform()
+
+    def enter_logs_on_fields(self):
+        username = 'Yujiro'
+        email = 'yujirohanma@baki.com'
+        password = 'yujiropassword'
+        username_add = WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@placeholder='Name']")))
+        username_add.send_keys(username)
+        email_add = WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@placeholder='Email']")))
+        email_add.send_keys(email)
+        password_add = WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located((By.XPATH, "//input[@placeholder='Password']")))
+        password_add.send_keys(password)
+        time.sleep(3)
+        ActionChains(self.driver).click(self.driver.find_element_by_class_name('seConnecterButton')).perform()
 
     def click_on_register(self):
         register_link = WebDriverWait(self.driver, 5).until(
             EC.presence_of_element_located((By.LINK_TEXT, "S'enregistrer")))
         ActionChains(self.driver).click(register_link).perform()
 
-    def enter_logs_on_fields(self):
-        username = 'Yujiro '
-        email = 'yujirohanma@baki.com'
-        password = 'yujiropassword'
+    # def test_user_searches(self):
+    #     self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
+    #     self.submit_text_on_placeholder('nutella')  # Il saisit le texte dans la barre de recherche
+    #     time.sleep(5)  # temps de chargement de la page
+    #     print(self.driver.page_source)
+    #     assert 'Vous pouvez remplacer ce produit par' in self.driver.page_source  # check the returned result
 
-        username_field = WebDriverWait(self.driver, 5).until(
-         EC.presence_of_element_located((By.ID, "id_username")))
-        self.driver.execute_script("arguments[0].click();", username_field).setAttribute("value", username)
-        # username_field.send_key(username)
+    # def test_user_login(self):
+    #     self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
+    #     self.clicks_on_login()  # Il click sur l'icone login
+    #     self.enter_text_on_login_fields()
+    #     time.sleep(3)
+    #     print(self.driver.page_source)
+    #     assert 'Du gras, oui, mais de qualite!' in self.driver.page_source
 
-        self.driver.execute_script('''
-            var elem = arguments[0];
-            var value = arguments[1];
-            elem.value = value;
-        ''', username_field, username)
+    # def test_user_register(self):
+    #     self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
+    #     self.clicks_on_login()  # Il click sur l'icone login
+    #     time.sleep(3)
+    #     self.click_on_register()  # Il click sur le lien S'enregistrer
+    #     time.sleep(3)
+    #     self.enter_logs_on_fields()
+    #     time.sleep(3)
+    #     print(self.driver.page_source)
+    #     assert 'Du gras, oui, mais de qualite!' in self.driver.page_source
 
-        # value = self.driver.execute_script('return arguments[0].value;', username_field)
-        # username_field.click()
-        # self.driver.execute_script("arguments[0].click();", username_field)
-        # username_field.click()
-        # # print(username_field)
-        # username_field.send_key(username)
-        # self.assertIn('Name', self.driver.page_source)
-        # # username_field.send_keys(username)
-        time.sleep(3)
-
-        # email_field = WebDriverWait(self.driver, 5).until(
-        #  EC.presence_of_element_located((By.CLASS_NAME, "emailLoginForm")))
-        # email_field.send_keys(email)
-        # password_field = WebDriverWait(self.driver, 5).until(
-        #  EC.presence_of_element_located((By.CLASS_NAME, "passwordLoginForm")))
-        # email_field.send_keys(password)
-        # ActionChains(self.driver).click(self.driver.find_element_by_class_name('seConnecterButton')).perform()
-
-    def test_user_register(self):
+    def test_user_add_backup(self):
         self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
-        self.clicks_on_login()  # Il click sur l'icone login
+        self.submit_text_on_placeholder('nutella')  # Il saisit le texte dans la barre de recherche
+        time.sleep(3)  # temps de chargement de la page
+        self.clicks_on_save()
+        time.sleep(3)  # temps de chargement de la page
+        self.enter_text_on_login_fields()
         time.sleep(3)
-        self.click_on_register()  # Il click sur le lien S'enregistrer
+        self.click_on_favoris()
         time.sleep(3)
-        self.enter_logs_on_fields()
-        # assert self.driver.current_url == self.live_server_url
+
+
+
+
+
+
+
