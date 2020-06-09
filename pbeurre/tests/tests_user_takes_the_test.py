@@ -40,7 +40,6 @@ class TestUserTakesTheTest(LiveServerTestCase):
         add_icon[0].click()
 
     def click_on_backup(self):
-        print(self.driver.page_source)
         fav_ico = WebDriverWait(self.driver, 20).until(
             EC.presence_of_element_located((By.ID, "carot")))
         fav_ico.click()
@@ -82,7 +81,6 @@ class TestUserTakesTheTest(LiveServerTestCase):
         self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
         self.submit_text_on_placeholder('nutella')  # Il saisit le texte dans la barre de recherche
         time.sleep(5)  # temps de chargement de la page
-        print(self.driver.page_source)
         assert 'Vous pouvez remplacer ce produit par' in self.driver.page_source  # check the returned result
 
     def test_user_login(self):
@@ -90,7 +88,6 @@ class TestUserTakesTheTest(LiveServerTestCase):
         self.clicks_on_login()  # Il click sur l'icone login
         self.enter_text_on_login_fields()
         time.sleep(3)
-        print(self.driver.page_source)
         assert 'Du gras, oui, mais de qualite!' in self.driver.page_source
 
     def test_user_register(self):
@@ -101,7 +98,6 @@ class TestUserTakesTheTest(LiveServerTestCase):
         time.sleep(3)
         self.enter_logs_on_fields()
         time.sleep(3)
-        print(self.driver.page_source)
         assert 'Du gras, oui, mais de qualite!' in self.driver.page_source
 
     def test_user_add_backup(self):
