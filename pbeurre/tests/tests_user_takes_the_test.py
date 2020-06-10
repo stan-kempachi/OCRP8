@@ -1,4 +1,4 @@
-from django.test import TestCase, LiveServerTestCase
+from django.test import LiveServerTestCase
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
@@ -24,8 +24,7 @@ class TestUserTakesTheTest(LiveServerTestCase):
     def submit_text_on_placeholder(self, text):
         # Wait as long as required, or maximum of 5 sec for element to appear
         # If successful, retrieves the element
-        placeholder = WebDriverWait(self.driver, 5).until(
-         EC.presence_of_element_located((By.ID, "searchForm")))
+        placeholder = WebDriverWait(self.driver, 5).until(EC.presence_of_element_located((By.ID, "searchForm")))
         placeholder.send_keys(text)
         ActionChains(self.driver).click(self.driver.find_element_by_id('button-addon2')).perform()
 

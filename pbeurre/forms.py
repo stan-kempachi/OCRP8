@@ -9,19 +9,16 @@ class LoginForm(forms.Form):
 class RegisterForm(forms.Form):
     name = forms.CharField(
         label="Name",
-        widget=forms.TextInput(attrs={'class': 'form-control'}),
-    )
+        widget=forms.TextInput(attrs={'class': 'form-control'}),)
     email = forms.CharField(
         label='Email',
         max_length=100,
         widget=forms.EmailInput(attrs={'class': 'form-control'}),
-        required=True
-        )
+        required=True)
     password = forms.CharField(
         label="Password",
         widget=forms.TextInput(attrs={'class': 'form-control'}),
-        required=True
-        )
+        required=True)
 
 
 class SearchForm(forms.Form):

@@ -30,35 +30,31 @@ def search(request, ):
         foo = get_object_or_404(food)
         substitute_list = []
         if foo.nutri_score == 'a':
-            substitute_list = Food.objects.filter(Q(name__icontains=query)
-                                                  & Q(category_tags2__icontains=foo.category)
-                                                  & Q(nutri_score__lte=foo.nutri_score)
-                                                  )
+            substitute_list = Food.objects.filter(Q(name__icontains=query) & Q
+                                                   (category_tags2__icontains=foo.category) & Q
+                                                   (nutri_score__lte=foo.nutri_score))
+
         if foo.nutri_score == 'b':
-            substitute_list = Food.objects.filter(Q(name__icontains=query)
-                                                  & Q(category_tags2__icontains=foo.category)
-                                                  & Q(nutri_score__lte=foo.nutri_score)
-                                                  )
+            substitute_list = Food.objects.filter(Q(name__icontains=query) & Q
+                                                   (category_tags2__icontains=foo.category) & Q
+                                                   (nutri_score__lte=foo.nutri_score))
 
         if foo.nutri_score == 'c':
-            substitute_list = Food.objects.filter(Q(name__icontains=query)
-                                                  & Q(category_tags2__icontains=foo.category)
-                                                  & Q(nutri_score__lt=foo.nutri_score)
-                                                  )
+            substitute_list = Food.objects.filter(Q(name__icontains=query) & Q
+                                                   (category_tags2__icontains=foo.category) & Q
+                                                   (nutri_score__lt=foo.nutri_score))
         if foo.nutri_score == 'd':
-            substitute_list = Food.objects.filter(Q(name__icontains=query)
-                                                  & Q(category_tags2__icontains=foo.category)
-                                                  & Q(nutri_score__lt=foo.nutri_score)
-                                                  )
+            substitute_list = Food.objects.filter(Q(name__icontains=query) & Q
+                                                   (category_tags2__icontains=foo.category) & Q
+                                                   (nutri_score__lt=foo.nutri_score))
         if foo.nutri_score == 'e':
-            substitute_list = Food.objects.filter(Q(name__icontains=query)
-                                                  & Q(category_tags2__icontains=foo.category)
-                                                  & Q(nutri_score__lt=foo.nutri_score)
-                                                  )
+            substitute_list = Food.objects.filter(Q(name__icontains=query) & Q
+                                                   (category_tags2__icontains=foo.category) & Q
+                                                   (nutri_score__lt=foo.nutri_score))
         if len(substitute_list) == 0:
             try:
-                substitute_list = Food.objects.filter(Q(category_tags2__icontains=foo.category)
-                                                      & Q(nutri_score__lt=foo.nutri_score))
+                substitute_list = Food.objects.filter(Q(category_tags2__icontains=foo.category) & Q
+                                                       (nutri_score__lt=foo.nutri_score))
             except:
                 pass
         substitute_list = substitute_list.order_by('nutri_score')
@@ -209,7 +205,9 @@ def remove_favorite(request, food_id):
     rem = Food.objects.filter(backup__user_id=user.id)
     rm = rem.get(id=food_id)
     rm.delete()
-    backup = Food.objects.filter(backup__user_id=user.id).order_by('nutri_score')
+    backup = Food.objects.filter(
+        backup__user_id=user.id
+    ).order_by('nutri_score')
     # paginator settings
     page = request.GET.get('page')
     paginator = Paginator(backup, 9)
@@ -225,5 +223,3 @@ def remove_favorite(request, food_id):
         'favoris': favoris
     }
     return render(request, 'pbeurre/favorite.html', context)
-
-

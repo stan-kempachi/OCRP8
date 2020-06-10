@@ -13,7 +13,9 @@ urlpatterns = [
     url(r'^mentionlegal/$', views.mention_legale, name="mention"),
     url(r'^food/(?P<food_id>[0-9]+)/$', views.details, name="details"),
     url(r'^content/', admin.site.urls, name="admin"),
-    url(r'^addfavorite/(?P<food_id>[0-9]+)/$', views.add_favorite, name="add_favorite"),
-    url(r'^remfavorite/(?P<food_id>[0-9]+)/$', views.remove_favorite, name="remove_fav"),
+    url(r'^addfavorite/(?P<food_id>[0-9]+)/$',
+        views.add_favorite, name="add_favorite"),
+    url(r'^remfavorite/(?P<food_id>[0-9]+)/$',
+        views.remove_favorite, name="remove_fav"),
     url(r'^favorite/$', views.favorite, name='favorite'),
 ]

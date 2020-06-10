@@ -1,23 +1,17 @@
 from django.contrib import admin
-from django.contrib.auth.models import User
-
 from .models import Backup, Food, Category
 
 
 @admin.register(Backup)
 class BackupAdmin(admin.ModelAdmin):
     model = Backup
-    fieldsets = [
-        (None, {'fields': ['food']})
-        ]
+    fieldsets = [(None, {'fields': ['food']})]
     extra = 1
 
 
 class BackupInline(admin.TabularInline):
     model = Backup
-    fieldsets = [
-        (None, {'fields': ['food']})
-        ]
+    fieldsets = [(None, {'fields': ['food']})]
     extra = 1
     verbose_name = "Favori"
     verbose_name_plural = "Favoris"
@@ -44,10 +38,7 @@ class FoodCategoryInline(admin.TabularInline):
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     model = Category
-    fieldsets = [
-        (None, {'fields': ['name',
-                           'picture']})
-        ]
+    fieldsets = [(None, {'fields': ['name', 'picture']})]
     extra = 1
 
 
@@ -56,5 +47,3 @@ class CategoryInline(admin.TabularInline):
     extra = 1
     verbose_name = "Catégorie"
     verbose_name_plural = "Catégories"
-
-
