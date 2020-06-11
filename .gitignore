@@ -5,3 +5,8 @@ pbeurre/__pycache__
 pbeurre/migrations/__pycache__
 plateforme_project/__pycache__/
 tmp/
+livrables/
+load_db.py
+classes.py
+constantes.py
+.coverage
