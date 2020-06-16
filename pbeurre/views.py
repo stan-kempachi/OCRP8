@@ -22,7 +22,7 @@ def index(request):
     return render(request, 'pbeurre/index.html', context)
 
 
-def search(request, ):
+def search(request):
     if request.GET:
         user = request.user
         query = request.GET.get('q')

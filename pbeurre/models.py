@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 class Category(models.Model):
     """
     Classe représentant la table 'Category' de la base de données
-£
-
     """
     name = models.CharField('nom', max_length=500, unique=True)
     picture = models.URLField('image', null=False)
