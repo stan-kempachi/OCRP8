@@ -7,3 +7,4 @@ plateforme_project/__pycache__/
 tmp/
 livrables/
 .coverage
+plateforme_project/settings/production.py
