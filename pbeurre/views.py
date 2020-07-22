@@ -15,11 +15,7 @@ key = '4bf8zx8t^se760vf#$sm^p_%j=*i=nccqjb#kp(2ug+6e51_(*'
 
 
 def index(request):
-    form = SearchForm(request.POST)
-    context = {
-        'form': form
-    }
-    return render(request, 'pbeurre/index.html', context)
+    return render(request, 'pbeurre/index.html')
 
 
 def search(request):
@@ -82,11 +78,9 @@ def search(request):
 
 
 def details(request, food_id):
-    form = SearchForm(request.POST)
     food = get_object_or_404(Food, id=food_id)
     context = {
         'food': food,
-        'form': form
     }
     return render(request, 'pbeurre/details.html', context)
 
