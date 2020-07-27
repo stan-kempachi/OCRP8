@@ -15,7 +15,7 @@ SECRET_KEY = "k=*?viYl)?\x0czx'r)inQhsSpo>x6xQ'H[V\x0cTvZqz_d!>:b2Qv"
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['134.209.31.48']
 
 # Application definition
 
@@ -78,9 +78,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pbeurre',
-        'USER': 'Stan',
-        'PASSWORD': 'Kempachi94',
-        'HOST': '',
+        'USER': 'stanb',
+        'PASSWORD': 'stanbpassword',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
