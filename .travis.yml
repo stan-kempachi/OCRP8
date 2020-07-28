@@ -1,20 +1,18 @@
-language: python
-python:
-        -'3.5'
+ language: python
+ python:
+                 -'3.6.9'
 
-before_script:
-        - pip install -r requirements.txt
+ before_script:
+                 - pip install -r requirements.txt
 
-branches:
-  only:
-        - master
+ branches:
+           only:
+                           - master
 
-env: DJANGO_SETTINGS_MODULE='plateforme_project.settings.travis'
+           env: DJANGO_SETTINGS_MODULE='plateforme_project.settings.travis'
 
-services:
-        - postgresql
+           services:
+                           - postgresql
 
-script:
-        - python manage.py test
-
- 
+           script:
+                           - python manage.py test
