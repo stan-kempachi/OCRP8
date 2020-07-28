@@ -15,13 +15,13 @@
                  - pip install -r requirements.txt
 
  branches:
-           only:
-                           - master
+  only:
+         - master
 
-           env: DJANGO_SETTINGS_MODULE='plateforme_project.settings.travis'
+ env: DJANGO_SETTINGS_MODULE='plateforme_project.settings.travis'
 
-           services:
-                           - postgresql
+ services:
+         - postgresql
 
-           script:
-                           - python manage.py test
+ script:
+         - python manage.py test
