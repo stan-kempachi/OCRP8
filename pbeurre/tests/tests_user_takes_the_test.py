@@ -12,6 +12,7 @@ class TestUserTakesTheTest(LiveServerTestCase):
     fixtures = ['pbeurre/fixtures/test_fixture.json']
 
     def setUp(self):
+        self.driver = webdriver.Chrome(executable_path='chromedriver.exe')
         self.driver = webdriver.Chrome()
         options = webdriver.ChromeOptions()
         options.add_argument("--start-maximized")
