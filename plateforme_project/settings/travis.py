@@ -1,5 +1,4 @@
-
-m . import *
+from . import *
 
 DATABASES = {
     'default': {
