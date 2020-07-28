@@ -128,7 +128,8 @@ STATIC_URL = '/static/'
 
 LOGIN_URL = 'pbeurre:login'
 
-
+# Configure Django App for Heroku.
+django_heroku.settings(locals(), test_runner=False)
 
 
 
