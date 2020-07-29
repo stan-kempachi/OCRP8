@@ -13,7 +13,6 @@ class TestUserTakesTheTest(LiveServerTestCase):
 
     def setUp(self):
         self.driver = webdriver.Chrome(executable_path='chromedriver.exe')
-        self.driver = webdriver.Chrome()
         options = webdriver.ChromeOptions()
         options.add_argument("--start-maximized")
         self.driver = webdriver.Chrome(chrome_options=options)
