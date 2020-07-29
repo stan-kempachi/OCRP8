@@ -16,3 +16,10 @@ env: DJANGO_SETTINGS_MODULE=plateforme_project.settings.travis
 
 script:
   - python manage.py test
+
+addons:
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
