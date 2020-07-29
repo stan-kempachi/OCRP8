@@ -5,6 +5,8 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 import time
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 
 class TestUserTakesTheTest(LiveServerTestCase):
@@ -12,7 +14,7 @@ class TestUserTakesTheTest(LiveServerTestCase):
     fixtures = ['pbeurre/fixtures/test_fixture.json']
 
     def setUp(self):
-        self.driver = webdriver.Chrome(executable_path='chromedriver.exe')
+        self.driver = webdriver.Chrome(ChromeDriverManager().install())
         options = webdriver.ChromeOptions()
         options.add_argument("--start-maximized")
         self.driver = webdriver.Chrome(chrome_options=options)

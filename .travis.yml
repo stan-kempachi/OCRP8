@@ -8,7 +8,7 @@ branches:
 
 before_script:
   - pip install -r requirements.txt
-
+  - pip install webdriver-manager
 services:
   - postgresql
 
