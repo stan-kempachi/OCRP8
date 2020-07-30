@@ -1,0 +1,33 @@
+language: python
+python:
+          - '3.6'
+              include:
+                          - python: 3.6
+
+                            branches:
+                                      only:
+                                                  - master
+
+                                      dist: xenial
+
+                                      addons:
+                                                chrome: stable
+                                                  apt:
+                                                              packages:
+                                                                            - chromium-chromedriver
+
+
+                                                              before_script:
+                                                                        - pip install -r requirements.txt
+                                                                            - set ENV = chromedriver.exe
+                                                                                - google-chrome-stable
+
+                                                              services:
+                                                                        - postgresql
+                                                                            - xvfb
+
+                                                              env: DJANGO_SETTINGS_MODULE=plateforme_project.settings.travis
+
+                                                              script:
+                                                                         - python manage.py test
+
