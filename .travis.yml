@@ -18,5 +18,18 @@ script:
   - python manage.py test
 
 sudo: required
+dist: trusty
 addons:
-  chrome: stable
+  apt:
+    sources:
+      - google-chrome
+    packages:
+      - google-chrome-stable
+      - oracle-java8-set-default
+
+this:before_script:
+      - "sh -e /etc/init.d/xvfb start"
+      - sleep 3
+
+after_script:
+      - "sh -e /etc/init.d/xvfb stop"
