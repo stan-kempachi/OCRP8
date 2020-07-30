@@ -10,9 +10,17 @@ branches:
     - master
   dist: xenial
 
+addons:
+  chrome: stable
+  apt:
+    packages:
+      - chromium-chromedriver
+
+
 before_script:
   - pip install -r requirements.txt
   - set ENV = chromedriver.exe
+  - google-chrome-stable
 
 services:
   - postgresql
