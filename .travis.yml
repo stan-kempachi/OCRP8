@@ -1,12 +1,12 @@
 language: python
 jobs:
   include:              
-  - name: 'Pyhton 3.6 on Winodws'
+  - name: 'Python 3.6 on Winodws'
     os: Windows
     language: shell
 
 branches:
-i only:
+  only:
     - master
 
 before_script:
