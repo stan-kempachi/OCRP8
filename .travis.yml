@@ -1,7 +1,8 @@
 language: python
+python: - "3.6"
 jobs:
   include:              
-  - name: 'Python 3.6 on Winodws'
+  - name: 'Python 3.6 on Windows'
     os: Windows
     language: shell
 
