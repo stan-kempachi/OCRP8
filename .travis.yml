@@ -2,33 +2,33 @@ language: python
 jobs:
           include:              
             - name: 'Python 3.6 on Windows'
-                - python: "3.6"  
-                      os: Windows
-                          language: shell
+            - python: "3.6"  
+            os: Windows
+            language: shell:
 
-                          branches:
-                                    only:
-                                                - master
+branches:
+        only:
+                - master
+        
+dist: xenial
 
-                                    dist: xenial
+addons:
+        chrome: stable
+        apt:
+                packages:
+                        - chromium-chromedriver
 
-                                    addons:
-                                              chrome: stable
-                                                apt:
-                                                            packages:
-                                                                          - chromium-chromedriver
+before_script:
+        - pip install -r requirements.txt
+        - set ENV = chromedriver.exe
+        - google-chrome-stable
 
+services:
+        - postgresql
+        - xvfb
 
-                                                            before_script:
-                                                                      - pip install -r requirements.txt
-                                                                          - set ENV = chromedriver.exe
-                                                                              - google-chrome-stable
+env: DJANGO_SETTINGS_MODULE=plateforme_project.settings.travis
 
-                                                            services:
-                                                                      - postgresql
-                                                                          - xvfb
+script:
+        - python manage.py test
 
-                                                            env: DJANGO_SETTINGS_MODULE=plateforme_project.settings.travis
-
-                                                            script:
-                                                                       - python manage.py test
