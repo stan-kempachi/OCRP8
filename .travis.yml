@@ -9,6 +9,8 @@ branches:
 before_script:
   - pip install -r requirements.txt
   - pip install webdriver-manager
+  - set ENV = chromedriver.exe
+
 services:
   - postgresql
 
@@ -17,8 +19,10 @@ env: DJANGO_SETTINGS_MODULE=plateforme_project.settings.travis
 script:
   - python manage.py test
 
-sudo: required
-dist: trusty
+
+
+os: windows
+
 addons:
   apt:
     sources:
