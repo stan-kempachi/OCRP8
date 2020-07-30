@@ -1,4 +1,3 @@
-language: python
 python:
   - '3.6'
   include:
@@ -9,13 +8,15 @@ python:
 branches:
   only:
     - master
+  dist: xenial
 
 before_script:
   - pip install -r requirements.txt
   - set ENV = chromedriver.exe
 
 services:
-  - postgresql                                             
+  - postgresql
+  - xvfb
                                               
 env: DJANGO_SETTINGS_MODULE=plateforme_project.settings.travis
 
