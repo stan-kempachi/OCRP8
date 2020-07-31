@@ -2,8 +2,9 @@ language: python
 jobs:
   include:              
   - name: 'Python 3.6 on Windows'
-  - python: "3.6"  
+  - python: "3.6"   
     os: Windows
+    language: shell
 
 
 branches:
