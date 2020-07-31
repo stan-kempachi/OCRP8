@@ -3,7 +3,7 @@ jobs:
   include:              
   - name: 'Python 3.6 on Windows'
   - python: "3.6"  
-    os: Windows
+
 
 branches:
   only:
@@ -13,12 +13,22 @@ env: DJANGO_SETTINGS_MODULE=plateforme_project.settings.travis
 
 before_script:
   - pip install -r requirements.txt
-  - set ENV = chromedriver.exe
+
+addons:
+  chrome: stable
 
 services:
   - postgresql
-  - xvfb
-
 
 script:
    - python manage.py test
+   
+install:
+   - wget -N https://chromedriver.storage.googleapis.com/85.0.4183.38/chromedriver_linux64.zip -P ~/
+   - unzip ~/chromedriver_linux64.zip -d ~/
+   - rm ~/chromedriver_linux64.zip
+   - sudo mv -f ~/chromedriver /stanb/local/share/
+   - sudo chmod +x /stanb/local/share/chromedriver
+   - sudo ln -s /stanb/local/share/chromedriver /stanb/local/bin/chromedriver
+   
+    
