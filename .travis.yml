@@ -10,7 +10,6 @@ branches:
 
 env: DJANGO_SETTINGS_MODULE=plateforme_project.settings.travis
 
-cache: false
 
 before_script:
   - pip install -r requirements.txt
@@ -19,9 +18,9 @@ before_script:
 addons:
   chrome: stable
 
-cache: false
-    before_cache:
-      - rm -f $HOME/.cache/
+
+before_cache:
+  - rm -f $HOME/.cache/
   
 services:
   - postgresql
