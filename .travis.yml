@@ -10,6 +10,8 @@ branches:
 
 env: DJANGO_SETTINGS_MODULE=plateforme_project.settings.travis
 
+cache: false
+
 before_script:
   - pip install -r requirements.txt
   - set ENV = chromedriver.exe
