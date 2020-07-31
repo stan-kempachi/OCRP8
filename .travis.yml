@@ -19,6 +19,10 @@ before_script:
 addons:
   chrome: stable
 
+cache: false
+    before_cache:
+      - rm -f $HOME/.cache/
+  
 services:
   - postgresql
 
