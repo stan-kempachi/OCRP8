@@ -1,8 +1,5 @@
 import os
 
-from webdriver_manager.chrome import ChromeDriverManager
-from selenium import webdriver
-
 os.environ['DJANGO_SETTINGS_MODULE'] = 'plateforme_project.settings'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -128,12 +125,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
-LOGIN_URL = 'pbeurre:login'
 
-SELENIUM_WEBDRIVERS = {
-'default': {
-'callable': webdriver.Chrome(ChromeDriverManager().install())
-'args': (),
-'kwargs': {},
-},
-}
+LOGIN_URL = 'pbeurre:login'
