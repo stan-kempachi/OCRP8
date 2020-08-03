@@ -133,17 +133,3 @@ SELENIUM_WEBDRIVERS = {
 'args': (),
 'kwargs': {},
 },
-
-
-
-
-
-
-
-
-
-
-
-
-
-
