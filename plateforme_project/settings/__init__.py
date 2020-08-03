@@ -78,8 +78,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pbeurre',
-        'USER': 'stanb',
-        'PASSWORD': 'stanbpassword',
+        'USER': 'Stan',
+        'PASSWORD': 'Kempachi94',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -125,9 +125,14 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
-
 LOGIN_URL = 'pbeurre:login'
 
+SELENIUM_WEBDRIVERS = {
+'default': {
+'callable': webdriver.Chrome,
+'args': (),
+'kwargs': {},
+},
 
 
 

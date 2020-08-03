@@ -1,2 +1,9 @@
 env/
-
+pbeurre/__pycache__/
+pbeurre/management/__pycache__/
+pbeurre/management/commands/__pycache__/
+pbeurre/migrations/__pycache__/
+pbeurre/tests/__pycache__/
+plateforme_project/__pycache__/
+plateforme_project/settings/__pycache__/
+debug.log
