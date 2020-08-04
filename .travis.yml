@@ -1,3 +1,4 @@
+build: trusty
 language: python
 jobs:
   include:              
@@ -15,6 +16,7 @@ services:
   - xvfb
 
 before_script:
+  - echo $PATH
   - pip install -r requirements.txt
 
 
@@ -32,3 +34,4 @@ install:
    - unzip ~/chromedriver_linux64.zip -d ~/
    - rm ~/chromedriver_linux64.zip
    - export CHROME_BIN=chromedriver
+   - export CHROME_BIN=chromium-browser

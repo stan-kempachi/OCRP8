@@ -10,3 +10,12 @@ DATABASES = {
         'PORT': '',
      },
 } 
+
+
+SELENIUM_WEBDRIVERS = {
+'default': {
+'callable': webdriver.Chrome,
+'args': (),
+'kwargs': {},
+},
+}

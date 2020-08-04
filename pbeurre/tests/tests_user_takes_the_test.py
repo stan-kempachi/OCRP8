@@ -15,7 +15,7 @@ class TestUserTakesTheTest(LiveServerTestCase):
 
     def setUp(self):
         options = webdriver.ChromeOptions()
-        self.driver = webdriver.Chrome('chromedriver.exe',chrome_options=options)
+        self.driver = webdriver.Chrome(CHROMEDRIVER,chrome_options=options)
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
