@@ -10,17 +10,17 @@ branches:
 
 env: DJANGO_SETTINGS_MODULE=plateforme_project.settings.travis
 
+dist: xenial
+services:
+  - xvfb
 
 before_script:
   - pip install -r requirements.txt
   - set ENV = chromedriver.exe
 
+
 addons:
   chrome: stable
-
- 
-before_cache:
-  - rm -f $HOME/.cache/
   
 services:
   - postgresql
@@ -29,7 +29,7 @@ script:
    - python manage.py test
    
 install:
-   - wget -N https://chromedriver.storage.googleapis.com/85.0.4183.38/chromedriver_linux64.zip -P ~/
+   - wget -N https://chromedriver.storage.googleapis.com/84.0.4147.30/chromedriver_linux64.zip -P ~/
    - unzip ~/chromedriver_linux64.zip -d ~/
    - rm ~/chromedriver_linux64.zip
    - export CHROME_BIN=chromium-browser
