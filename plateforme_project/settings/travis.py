@@ -14,7 +14,7 @@ DATABASES = {
 
 SELENIUM_WEBDRIVERS = {
 'default': {
-'callable': webdriver.Chrome,
+'callable': chrome.Chrome,
 'args': (),
 'kwargs': {},
 },
