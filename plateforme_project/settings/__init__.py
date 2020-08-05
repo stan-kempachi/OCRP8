@@ -1,5 +1,18 @@
 import os
 
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="https://896ec3b9b9f64b91b40b55036a54cdd0@o430310.ingest.sentry.io/5379084",
+    integrations=[DjangoIntegration()],
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
+
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'plateforme_project.settings'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -15,7 +28,7 @@ SECRET_KEY = "k=*?viYl)?\x0czx'r)inQhsSpo>x6xQ'H[V\x0cTvZqz_d!>:b2Qv"
 
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['134.209.31.48']
 
 # Application definition
 
