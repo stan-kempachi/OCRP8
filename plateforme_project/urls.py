@@ -20,6 +20,7 @@ from django.contrib import admin
 
 from pbeurre import views
 
+
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^mentionlegal/$', views.mention_legale, name="mention"),

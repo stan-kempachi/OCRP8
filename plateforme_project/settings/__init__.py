@@ -1,5 +1,6 @@
 import os
 
+
 os.environ['DJANGO_SETTINGS_MODULE'] = 'plateforme_project.settings'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -15,7 +16,7 @@ SECRET_KEY = "k=*?viYl)?\x0czx'r)inQhsSpo>x6xQ'H[V\x0cTvZqz_d!>:b2Qv"
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['134.209.31.48']
+ALLOWED_HOSTS = []
 
 # Application definition
 
@@ -127,18 +128,5 @@ STATIC_URL = '/static/'
 
 
 LOGIN_URL = 'pbeurre:login'
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
