@@ -16,9 +16,13 @@ Including another URLconf
 from django.conf import settings
 from django.conf.urls import include, url
 from django.contrib import admin
-
+from django.urls import path
 
 from pbeurre import views
+
+
+def trigger_error(request):
+    division_by_zero = 1 / 0
 
 
 urlpatterns = [
@@ -26,6 +30,7 @@ urlpatterns = [
     url(r'^mentionlegal/$', views.mention_legale, name="mention"),
     url(r'^pbeurre/', include(('pbeurre.urls', 'pbeurre'), namespace='pbeurre')),
     url(r'^admin', admin.site.urls),
+    path('sentry-debug/', trigger_error),
 ]
 
 if settings.DEBUG:
