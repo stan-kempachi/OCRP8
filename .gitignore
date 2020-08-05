@@ -1,2 +1,7 @@
 env/
-
+../../pbeurre/__pycache__/
+../__pycache__/
+.__init__.py.swo
+.__init__.py.swp
+__pycache__/
+production.py
