@@ -8,21 +8,17 @@ import time
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-
 class TestUserTakesTheTest(LiveServerTestCase):
 
     fixtures = ['pbeurre/fixtures/test_fixture.json']
 
     def setUp(self):
         options = webdriver.ChromeOptions()
-        self.driver = webdriver.Chrome(CHROMEDRIVER,chrome_options=options)
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
-        options.add_argument("--disable-gpu")
-        options.add_argument("--disable-features=NetworkService")
-        options.add_argument("--window-size=1920x1080")
-        options.add_argument("--disable-features=VizDisplayCompositor")
+        options.add_argument("--start-maximized")
         self.driver.implicitly_wait(5)
 
     def tearDown(self):

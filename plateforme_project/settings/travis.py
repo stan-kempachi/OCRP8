@@ -11,11 +11,3 @@ DATABASES = {
      },
 } 
 
-
-SELENIUM_WEBDRIVERS = {
-'default': {
-'callable': chrome.Chrome,
-'args': (),
-'kwargs': {},
-},
-}
