@@ -8,19 +8,17 @@ import time
 from webdriver_manager.chrome import ChromeDriverManager
 
 
-
 class TestUserTakesTheTest(LiveServerTestCase):
 
     fixtures = ['pbeurre/fixtures/test_fixture.json']
 
     def setUp(self):
-        self.driver = webdriver.Chrome(ChromeDriverManager().install())
         options = webdriver.ChromeOptions()
+        self.driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
         options.add_argument('--headless')
         options.add_argument('--no-sandbox')
         options.add_argument('--disable-dev-shm-usage')
         options.add_argument("--start-maximized")
-        self.driver = webdriver.Chrome(chrome_options=options)
         self.driver.implicitly_wait(5)
 
     def tearDown(self):

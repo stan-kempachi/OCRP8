@@ -16,7 +16,11 @@ SECRET_KEY = "k=*?viYl)?\x0czx'r)inQhsSpo>x6xQ'H[V\x0cTvZqz_d!>:b2Qv"
 
 DEBUG = True
 
+<<<<<<< HEAD
 ALLOWED_HOSTS = []
+=======
+ALLOWED_HOSTS = ['134.209.31.48', '127.0.0.1']
+>>>>>>> cc7fe8de4901b38b8ff7f098fb5bbbe4cb4130f1
 
 # Application definition
 
@@ -79,8 +83,8 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'pbeurre',
-        'USER': 'stanb',
-        'PASSWORD': 'stanbpassword',
+        'USER': 'Stan',
+        'PASSWORD': 'Kempachi94',
         'HOST': 'localhost',
         'PORT': '5432',
     }
@@ -128,5 +132,8 @@ STATIC_URL = '/static/'
 
 
 LOGIN_URL = 'pbeurre:login'
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> cc7fe8de4901b38b8ff7f098fb5bbbe4cb4130f1

@@ -1,7 +1,19 @@
 env/
+<<<<<<< HEAD
 ../../pbeurre/__pycache__/
 ../__pycache__/
 .__init__.py.swo
 .__init__.py.swp
 __pycache__/
 production.py
+=======
+pbeurre/__pycache__/
+pbeurre/management/__pycache__/
+pbeurre/management/commands/__pycache__/
+pbeurre/migrations/__pycache__/
+pbeurre/tests/__pycache__/
+plateforme_project/__pycache__/
+plateforme_project/settings/__pycache__/
+debug.log
+.idea/
+>>>>>>> cc7fe8de4901b38b8ff7f098fb5bbbe4cb4130f1

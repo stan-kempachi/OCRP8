@@ -8,8 +8,11 @@ from django.contrib.auth.models import User
 
 # personal import
 from .models import Food, Backup
-from .forms import RegisterForm, SearchForm, LoginForm
+from .forms import RegisterForm, LoginForm
+import logging
 
+# Get an instance of a logger
+logger = logging.getLogger(__name__)
 
 key = '4bf8zx8t^se760vf#$sm^p_%j=*i=nccqjb#kp(2ug+6e51_(*'
 
@@ -72,6 +75,10 @@ def search(request):
             'substitute': substitute,
             'paginate': True,
         }
+        logger.info('New search', exc_info=True, extra={
+            # Optionally pass a request and we'll grab any information we can
+            'request': request,
+        })
         return render(request, 'pbeurre/search.html', context)
     else:
         return render(request, 'pbeurre/index.html')
