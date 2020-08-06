@@ -1,17 +1,5 @@
 import os
 
-import sentry_sdk
-from sentry_sdk.integrations.django import DjangoIntegration
-
-sentry_sdk.init(
-    dsn="https://896ec3b9b9f64b91b40b55036a54cdd0@o430310.ingest.sentry.io/5379084",
-    integrations=[DjangoIntegration()],
-
-    # If you wish to associate users to errors (assuming you are using
-    # django.contrib.auth) you may enable sending PII data.
-    send_default_pii=True
-)
-
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'plateforme_project.settings'
 
@@ -137,6 +125,5 @@ INTERNAL_IPS = []
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
-
 
 LOGIN_URL = 'pbeurre:login'
