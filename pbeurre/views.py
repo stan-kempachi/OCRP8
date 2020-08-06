@@ -59,7 +59,10 @@ def search(request):
         substitute_list = substitute_list.order_by('nutri_score')
         substitute_list = substitute_list.exclude(name=foo.name)
         favori = Food.objects.filter(Q(backup__user_id=user.id))
-
+        logger.info('New search', exc_info=True, extra={
+            # Optionally pass a request and we'll grab any information we can
+            'request': request,
+        })
         # paginator settings
         page = request.GET.get('page')
         paginator = Paginator(substitute_list, 6)
@@ -75,10 +78,6 @@ def search(request):
             'substitute': substitute,
             'paginate': True,
         }
-        logger.info('New search', exc_info=True, extra={
-            # Optionally pass a request and we'll grab any information we can
-            'request': request,
-        })
         return render(request, 'pbeurre/search.html', context)
     else:
         return render(request, 'pbeurre/index.html')

@@ -1,6 +1,5 @@
 import os
 
-
 os.environ['DJANGO_SETTINGS_MODULE'] = 'plateforme_project.settings'
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -18,7 +17,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['134.209.31.48']
 
-# Application definition
+#Application definition
 
 
 MIDDLEWARE = [
@@ -132,4 +131,3 @@ LOGIN_URL = 'pbeurre:login'
 CRONJOBS = [
     ('59 23 */7 * *', 'django.core.management.call_command', ['cm_db']),
 ]
-
