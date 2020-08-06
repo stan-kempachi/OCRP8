@@ -19,13 +19,17 @@ from django.contrib import admin
 
 
 from pbeurre import views
+from django.urls import path
 
+def trigger_error(request):
+    division_by_zero = 1 / 0
 
 urlpatterns = [
     url(r'^$', views.index, name='index'),
     url(r'^mentionlegal/$', views.mention_legale, name="mention"),
     url(r'^pbeurre/', include(('pbeurre.urls', 'pbeurre'), namespace='pbeurre')),
     url(r'^admin', admin.site.urls),
+    path('sentry-debug/', trigger_error),
 ]
 
 if settings.DEBUG:
