@@ -125,6 +125,10 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 STATIC_URL = '/static/'
 
+<<<<<<< HEAD
 
 LOGIN_URL = 'pbeurre:login'
 
+=======
+LOGIN_URL = 'pbeurre:login'
+>>>>>>> 487262c47eef8ca261d2938f3eb9325cd28177b9
