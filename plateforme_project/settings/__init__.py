@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'django.contrib.sites',
     'debug_toolbar',
     'widget_tweaks',
+    'django_crontab',
 ]
 
 ROOT_URLCONF = 'plateforme_project.urls'
@@ -127,3 +128,8 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATIC_URL = '/static/'
 
 LOGIN_URL = 'pbeurre:login'
+
+CRONJOBS = [
+    ('59 23 */7 * *', 'django.core.management.call_command', ['cm_db']),
+]
+
