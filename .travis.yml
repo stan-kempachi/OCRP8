@@ -25,7 +25,6 @@ addons:
   
 services:
   - postgresql
-  - xvfb
 
 script:
    - python manage.py test
