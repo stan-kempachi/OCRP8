@@ -1,6 +1,4 @@
-root:
-  os: linux
-                
+os: linux               
 
 language: python
 
