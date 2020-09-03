@@ -15,11 +15,9 @@ SECRET_KEY = "k=*?viYl)?\x0czx'r)inQhsSpo>x6xQ'H[V\x0cTvZqz_d!>:b2Qv"
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['134.209.31.48']
+ALLOWED_HOSTS = ['127.0.0.1']
 
-#Application definition
-
-
+# Application definition
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
@@ -46,6 +44,7 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'widget_tweaks',
     'django_crontab',
+    'anymail',
 ]
 
 ROOT_URLCONF = 'plateforme_project.urls'
@@ -131,3 +130,18 @@ LOGIN_URL = 'pbeurre:login'
 CRONJOBS = [
     ('59 23 */7 * *', 'django.core.management.call_command', ['cm_db']),
 ]
+
+# Anymail
+SITE_ID = 1
+
+ANYMAIL = {
+    # (exact settings here depend on your ESP...)
+    "MAILJET_API_KEY": 'ffa15c5d3160d95a43b357f18192a8ea',
+    "MAILJET_SECRET_KEY": 'd6a222a6040d613fb9d38858501de385',
+
+}
+
+EMAIL_BACKEND = "anymail.backends.mailjet.EmailBackend"  # or sendgrid.EmailBackend, or...
+DEFAULT_FROM_EMAIL = "stan.ali@hotmail.fr"  # if you don't already have this in settings
+SERVER_EMAIL = "stan.ali@hotmail.fr"  # ditto (default from-email for Django errors)
+MAILJET_API_URL = "https://api.mailjet.com/v3"

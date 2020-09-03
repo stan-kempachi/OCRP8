@@ -17,5 +17,8 @@ debug.log
 .idea/
 ..travis.yml.un~
 .travis.yml~
-..gitignore.un~                                                                                          
+..gitignore.un~                                                  
+plateforme_project/settings/.__init__.py.un~
+plateforme_project/settings/__init__.py~
+                                        
 .gitignore~  

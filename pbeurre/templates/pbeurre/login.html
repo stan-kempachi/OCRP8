@@ -23,6 +23,8 @@
                 <p>{{ message }}</p>
                 {% endfor %}
             {% endif %}
+
+              <a href="{% url 'pbeurre:password_reset' %}">Mot de passe oublié ?  </a>&nbsp
               <a href="{% url 'pbeurre:register' %}">S'enregistrer</a>&nbsp
             <input type="submit" value="Se Connecter" class="seConnecterButton">
           </form>

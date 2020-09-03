@@ -223,3 +223,4 @@ def remove_favorite(request, food_id):
         'favoris': favoris
     }
     return render(request, 'pbeurre/favorite.html', context)
+

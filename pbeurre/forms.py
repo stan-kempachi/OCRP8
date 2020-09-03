@@ -23,3 +23,5 @@ class RegisterForm(forms.Form):
 
 class SearchForm(forms.Form):
     search = forms.CharField(max_length=50)
+
+
