@@ -14,8 +14,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.conf import settings
-from django.conf.urls import include, url
+from django.conf.urls import url
 from django.contrib import admin
+from django.urls import path, include
 
 from pbeurre import views
 
@@ -25,8 +26,7 @@ urlpatterns = [
     url(r'^mentionlegal/$', views.mention_legale, name="mention"),
     url(r'^pbeurre/', include(('pbeurre.urls', 'pbeurre'), namespace='pbeurre')),
     url(r'^admin', admin.site.urls),
-    url(r'^pbeurre/', include('django.contrib.auth.urls')),
-
+    path('pbeurre/', include('django.contrib.auth.urls')),
 ]
 
 if settings.DEBUG:

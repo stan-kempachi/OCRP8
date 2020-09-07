@@ -8,7 +8,7 @@ from django.contrib.auth.models import User
 
 # personal import
 from .models import Food, Backup
-from .forms import RegisterForm, LoginForm
+from .forms import RegisterForm, LoginForm, CustomPasswordResetForm
 import logging
 
 # Get an instance of a logger
@@ -30,30 +30,30 @@ def search(request):
         substitute_list = []
         if foo.nutri_score == 'a':
             substitute_list = Food.objects.filter(Q(name__icontains=query) & Q
-                                                   (category_tags2__icontains=foo.category) & Q
-                                                   (nutri_score__lte=foo.nutri_score))
+            (category_tags2__icontains=foo.category) & Q
+                                                  (nutri_score__lte=foo.nutri_score))
 
         if foo.nutri_score == 'b':
             substitute_list = Food.objects.filter(Q(name__icontains=query) & Q
-                                                   (category_tags2__icontains=foo.category) & Q
-                                                   (nutri_score__lte=foo.nutri_score))
+            (category_tags2__icontains=foo.category) & Q
+                                                  (nutri_score__lte=foo.nutri_score))
 
         if foo.nutri_score == 'c':
             substitute_list = Food.objects.filter(Q(name__icontains=query) & Q
-                                                   (category_tags2__icontains=foo.category) & Q
-                                                   (nutri_score__lt=foo.nutri_score))
+            (category_tags2__icontains=foo.category) & Q
+                                                  (nutri_score__lt=foo.nutri_score))
         if foo.nutri_score == 'd':
             substitute_list = Food.objects.filter(Q(name__icontains=query) & Q
-                                                   (category_tags2__icontains=foo.category) & Q
-                                                   (nutri_score__lt=foo.nutri_score))
+            (category_tags2__icontains=foo.category) & Q
+                                                  (nutri_score__lt=foo.nutri_score))
         if foo.nutri_score == 'e':
             substitute_list = Food.objects.filter(Q(name__icontains=query) & Q
-                                                   (category_tags2__icontains=foo.category) & Q
-                                                   (nutri_score__lt=foo.nutri_score))
+            (category_tags2__icontains=foo.category) & Q
+                                                  (nutri_score__lt=foo.nutri_score))
         if len(substitute_list) == 0:
             try:
                 substitute_list = Food.objects.filter(Q(category_tags2__icontains=foo.category) & Q
-                                                       (nutri_score__lt=foo.nutri_score))
+                (nutri_score__lt=foo.nutri_score))
             except:
                 pass
         substitute_list = substitute_list.order_by('nutri_score')
@@ -224,3 +224,11 @@ def remove_favorite(request, food_id):
     }
     return render(request, 'pbeurre/favorite.html', context)
 
+
+def password_reset_request(request):
+    if request.method == "POST":
+        password_reset_form = CustomPasswordResetForm(request.POST)
+    else:
+        password_reset_form = CustomPasswordResetForm()
+    context = {"password_reset_form": password_reset_form}
+    return render(request, 'pbeurre/registration/password_reset_confirm.html', context)

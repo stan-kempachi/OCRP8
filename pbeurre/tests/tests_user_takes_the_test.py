@@ -6,6 +6,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.action_chains import ActionChains
 import time
 from webdriver_manager.chrome import ChromeDriverManager
+from django.conf import settings
 
 
 class TestUserTakesTheTest(LiveServerTestCase):
@@ -13,6 +14,8 @@ class TestUserTakesTheTest(LiveServerTestCase):
     fixtures = ['pbeurre/fixtures/test_fixture.json']
 
     def setUp(self):
+        settings.CSRF_COOKIE_SECURE = False
+        settings.SESSION_COOKIE_SECURE = False
         options = webdriver.ChromeOptions()
         self.driver = webdriver.Chrome(ChromeDriverManager().install(), chrome_options=options)
         options.add_argument('--headless')
@@ -31,6 +34,11 @@ class TestUserTakesTheTest(LiveServerTestCase):
         placeholder.send_keys(text)
         ActionChains(self.driver).click(self.driver.find_element_by_id('button-addon2')).perform()
 
+    def clicks_on_forget_password(self):
+        link = WebDriverWait(self.driver, 5).until(
+            EC.presence_of_element_located((By.ID, "password_reset")))
+        ActionChains(self.driver).click(link).perform()
+
     def clicks_on_login(self):
         login_icon = WebDriverWait(self.driver, 5).until(
             EC.presence_of_element_located((By.ID, "log")))
@@ -46,6 +54,11 @@ class TestUserTakesTheTest(LiveServerTestCase):
             EC.presence_of_element_located((By.ID, "carot")))
         fav_ico.click()
 
+    def click_on_send_mail(self):
+        fav_ico = WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located((By.ID, "send_mail")))
+        fav_ico.click()
+
     def enter_text_on_login_fields(self):
         username = 'Stan'
         password = 'Stanpassword'
@@ -57,6 +70,17 @@ class TestUserTakesTheTest(LiveServerTestCase):
         password_add.send_keys(password)
         time.sleep(3)
         ActionChains(self.driver).click(self.driver.find_element_by_class_name('seConnecterButton')).perform()
+
+    def enter_email_on_reset_fields(self):
+        email = 'yujirohanma@baki.com'
+
+        email_add = WebDriverWait(self.driver, 20).until(
+            EC.presence_of_element_located((By.NAME, "email")))
+        email_add.send_keys(email)
+
+        time.sleep(3)
+        ActionChains(self.driver).click(
+            self.driver.find_element_by_id("send_mail")).perform()
 
     def enter_logs_on_fields(self):
         username = 'Yujiro'
@@ -124,3 +148,15 @@ class TestUserTakesTheTest(LiveServerTestCase):
         self.click_on_backup()
         time.sleep(3)  # temps de chargement de la page
         assert 'Vos Produits Favoris :' in self.driver.page_source
+
+    def test_user_reset_password(self):
+        self.driver.get(self.live_server_url)  # L'utilisateur se rend sur la page d'acceuil
+        time.sleep(3)  # temps de chargement de la page
+        self.clicks_on_login()
+        time.sleep(3)  # temps de chargement de la page
+        self.clicks_on_forget_password()
+        time.sleep(3)  # temps de chargement de la page
+        self.enter_email_on_reset_fields()
+        time.sleep(3)  # temps de chargement de la page
+        # self.click_on_send_mail()
+        # time.sleep(3)  # temps de chargement de la page

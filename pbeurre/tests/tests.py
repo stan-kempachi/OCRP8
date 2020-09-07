@@ -5,6 +5,9 @@ from django.urls import reverse
 
 from pbeurre.models import Food, Category, Backup
 from django.contrib.auth.models import User
+from django.test import Client
+
+from django.core import mail
 
 
 # Index page
@@ -202,6 +205,7 @@ class BackupPageTestCase(TestCase):
 
 # favorite page
 class FavoritePageTestCase(TestCase):
+
     def setUp(self):
         self.user = User.objects.create(username='Zaraki ', email='zaraki.kempachi@bleach.soul')
         self.user.set_password('zarakipassword')
@@ -217,3 +221,36 @@ class FavoritePageTestCase(TestCase):
         self.client.force_login(self.user)
         response = self.client.get(reverse('pbeurre:favorite'))
         self.assertEqual(response.status_code, 200)
+
+
+# Reset Password
+class ResetPasswordTestCase(TestCase):
+    def setUp(self):
+        self.user = User.objects.create(username='Zaraki ', email='zaraki.kempachi@bleach.soul')
+        self.user.set_password('zarakipassword')
+        self.user.save()
+
+    def test_reset_password_page(self):
+        # First we get the initial password reset form.
+        response = self.client.get(reverse('pbeurre:password_reset'))
+        self.assertEqual(response.status_code, 200)
+
+        # Then we post the response with our "email address"
+        response = self.client.post(reverse('password_reset'), {'email': 'zaraki.kempachi@bleach.soul'},)
+        self.assertEqual(response.status_code, 302)
+        # At this point the system will "send" us an email. We can "check" it:
+        self.assertEqual(len(mail.outbox), 1)
+        self.assertEqual(mail.outbox[0].subject, 'Réinitialisation du mot de passe sur example.com')
+
+        # Now, here's the kicker: we get the token and userid from the response
+        token = response.context[0]['token']
+        uid = response.context[0]['uid']
+        # Now we can use the token to get the password change form
+        response = self.client.get(reverse('password_reset_confirm', kwargs={'token': token, 'uidb64': uid}))
+        self.assertEqual(response.status_code, 302)
+        self.assertEqual(response.url, '/pbeurre/reset/MTI/set-password/')
+
+        # Now we post to the same url with our new password:
+        response = self.client.get(reverse('password_reset_confirm', kwargs={'token': token, 'uidb64': uid},),
+                                   {'new_password1': 'pass', 'new_password2': 'pass'})
+        self.assertEqual(response.status_code, 302)

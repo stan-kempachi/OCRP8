@@ -45,7 +45,10 @@ INSTALLED_APPS = [
     'widget_tweaks',
     'django_crontab',
     'anymail',
+    'crispy_forms',
 ]
+
+CRISPY_TEMPLATE_PACK = 'uni_form'
 
 ROOT_URLCONF = 'plateforme_project.urls'
 
