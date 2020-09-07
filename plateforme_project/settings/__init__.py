@@ -1,4 +1,15 @@
 import os
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+        dsn="https://cd9ebf6d85044de6822a6b9c5d5228c9@o430310.ingest.sentry.io/5379170",
+    integrations=[DjangoIntegration()],
+
+    # If you wish to associate users to errors (assuming you are using
+    # django.contrib.auth) you may enable sending PII data.
+    send_default_pii=True
+)
 
 os.environ['DJANGO_SETTINGS_MODULE'] = 'plateforme_project.settings'
 
