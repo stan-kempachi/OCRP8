@@ -3,7 +3,7 @@ import sentry_sdk
 from sentry_sdk.integrations.django import DjangoIntegration
 
 sentry_sdk.init(
-        dsn="https://cd9ebf6d85044de6822a6b9c5d5228c9@o430310.ingest.sentry.io/5379170",
+    dsn="https://cd9ebf6d85044de6822a6b9c5d5228c9@o430310.ingest.sentry.io/5379170",
     integrations=[DjangoIntegration()],
 
     # If you wish to associate users to errors (assuming you are using
@@ -26,7 +26,7 @@ SECRET_KEY = "k=*?viYl)?\x0czx'r)inQhsSpo>x6xQ'H[V\x0cTvZqz_d!>:b2Qv"
 
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1']
+ALLOWED_HOSTS = []
 
 # Application definition
 MIDDLEWARE = [
