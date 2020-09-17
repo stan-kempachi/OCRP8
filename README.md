@@ -4,7 +4,7 @@
 > -  Projet réalisé par moi-même étudiant chez Openclassrooms
 > - Plateforme permettant de comparer des produits alimentaires selon leurs nutri-score, de mieux consommer.
 > - Date de fin: Juin 2020
-> - Démo en ligne : http://pbeurre.herokuapp.com/
+> - Démo en ligne : http://134.209.31.48/
 > - Language : Python-Django, HTML, CSS, architecture MVT (model-vue-template)
 
 
