@@ -7,7 +7,7 @@ colorama==0.4.1
 configparser==5.0.0
 crayons==0.3.1
 dj-database-url==0.5.0
-Django==3.0.7
+Django==3.0.14
 django-anymail==7.2.1
 django-appconf==1.0.4
 django-crispy-forms==1.9.2
