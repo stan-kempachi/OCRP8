@@ -1,0 +1,109 @@
+<section class="col-sm-12 col-md-12 page-section"style="top: -80px">
+    {% if foods %}
+    <h4 class="text-center mx-auto">Vous pouvez remplacer ce produit par :</h4>
+    {% endif %}
+    {% if substitute|length_is:"0" %}
+    <div class="col-sm-12 col-md-12 headerImage text-center" id="no_result_text">
+      Miséricorde ! Nous n'avons trouvé aucun résultat à cette requête. <br>
+        Même pas de quoi se ronger la chique ! <br>
+      Lancez de nouveau votre ligne !
+    </div>
+    {% else %}
+            {% if paginate %}
+            <div class="mx-auto  text-center">
+              <nav aria-label="...">
+                {% if substitute.has_other_pages %}
+                    {% if substitute.has_previous %}
+                      <a href="?page={{ substitute.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo;</a>
+                    {% else %}
+                     <span>&laquo;</span>
+                    {% endif %}
+                    {% for i in substitute.paginator.page_range %}
+                      {% if substitute.number == i %}
+                        <span>{{ i }} <span class="sr-only">(current)</span></span>
+                      {% else %}
+                       <a href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ i }}</a>
+                      {% endif %}
+                    {% endfor %}
+                    {% if substitute.has_next %}
+                    <a href="?page={{ substitute.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a>
+                    {% else %}
+                     <span>&raquo;</span>
+                    {% endif %}
+                {% endif %}
+              </nav>
+            </div>
+        {% endif %}
+            <div id="backgroundProduct" class="row">
+            {% for food in substitute %}
+            <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4  text-center">
+            <br>
+            <div id="block_food" ><h3>
+                {% if food.nutri_score == "a" %}
+                <div id="nutri_score_a">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                {% if food.nutri_score == "b" %}
+                <div id="nutri_score_b">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                {% if food.nutri_score == "c" %}
+                <div id="nutri_score_c">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                {% if food.nutri_score == "d" %}
+                <div id="nutri_score_d">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                {% if food.nutri_score == "e" %}
+                <div id="nutri_score_e">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                <a class="img-fluid" href="{{ food.picture }}">
+                  <img id="food-image" class="image" src="{{ food.picture }}" alt=""></a>
+            </h3></div>
+                <div id="foods-content">
+                <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:details' food_id=food.id %}">
+                    <h6 id="food-name">{{ food.name }}<br></h6></a>
+                  {% if user.is_authenticated %}
+                 {% if food in favori %}
+              <h6 style="color: #f4decf">Ce produit est deja vos favoris</h6>
+                     {% else %}
+                     <form action="{% url 'pbeurre:add_favorite' food_id=food.id %}" method="get" accept-charset="utf-8">
+                {% csrf_token %}
+                    <button class="btn-primary my-2 my-sm-0" id="favbouton" type="submit" value="submit"><i class="far fa-trash-alt">&nbsp Sauvegarder</i></button>
+                    </form>
+                      {% endif %}
+                 {% else %}
+                     <form action="{% url 'pbeurre:add_favorite' food_id=food.id %}" method="get" accept-charset="utf-8">
+                {% csrf_token %}
+                    <button class="btn-primary my-2 my-sm-0" id="favbouton" type="submit" value="submit"><i class="far fa-trash-alt">&nbsp Sauvegarder</i></button>
+                    </form>
+                  {% endif %}
+                {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+                </div>
+                </div>
+            {% endfor %}
+            </div>
+        <br>
+            {% if paginate %}
+                <div class="mx-auto  text-center">
+              <nav aria-label="...">
+                {% if substitute.has_other_pages %}
+                    {% if substitute.has_previous %}
+                      <a href="?page={{ substitute.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&laquo;</a>
+                    {% else %}
+                     <span>&laquo;</span>
+                    {% endif %}
+                    {% for i in substitute.paginator.page_range %}
+                      {% if substitute.number == i %}
+                        <span>{{ i }} <span class="sr-only">(current)</span></span>
+                      {% else %}
+                       <a href="?page={{ i }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">{{ i }}</a>
+                      {% endif %}
+                    {% endfor %}
+                    {% if substitute.has_next %}
+                   <a href="?page={{ substitute.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}">&raquo;</a>
+                    {% else %}
+                    {% endif %}
+                {% endif %}
+              </nav>
+            </div>
+        {% endif %}
+    {% endif %}
+</section>

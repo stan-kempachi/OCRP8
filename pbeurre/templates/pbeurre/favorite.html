@@ -1,0 +1,99 @@
+{% extends 'pbeurre/base.html' %}
+{% block content%}
+<section class="page-section">
+    <div class="col-sm-12 col-md-12  text-center">
+    <h4 class="text-center  mx-auto">Vos Produits Favoris :</h4>
+    {% if not favori %}
+        <br>
+        <div style="padding-top:7%; padding-bottom: 20%">
+      Vous n'avez pas encore de favoris !
+    </div>
+        </div>
+        {% else %}
+            {% if paginate %}<br>
+              <nav aria-label="...">
+                <ul class="pager">
+                  {% if favoris.has_previous %}
+                      <a href="?page={{ favoris.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">&laquo;</a>
+                      {% else %}
+                     <span>&laquo;</span>
+                  {% endif %}
+                {% for i in favoris.paginator.page_range %}
+                 {% if favoris.number == i %}
+                        <span>{{ i }} <span class="sr-only">(current)</span></span>
+                      {% else %}
+                       <a href="?page={{ i }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ i }}</a>
+                      {% endif %}
+                    {% endfor %}
+                  {% if favoris.has_next %}
+                      <a href="?page={{ favoris.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">&raquo;</a>
+                      {% else %}
+                     <span>&raquo;</span>
+                    {% endif %}
+                </ul>
+              </nav>
+            {% endif %}
+
+            <div id="backgroundProduct" class="row">
+            {% for food in favori %}
+            <div   class="col-sm-12 col-md-12 col-lg-4 col-xl-4   text-center">
+            <br>
+            <div id="block_food" ><h3>
+                {% if food.nutri_score == "a" %}
+                <div id="nutri_score_a">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                {% if food.nutri_score == "b" %}
+                <div id="nutri_score_b">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                {% if food.nutri_score == "c" %}
+                <div id="nutri_score_c">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                {% if food.nutri_score == "d" %}
+                <div id="nutri_score_d">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                {% if food.nutri_score == "e" %}
+                <div id="nutri_score_e">{{ food.nutri_score|upper }}</div>
+                {% endif %}
+                <a class="img-fluid" href="{{ food.picture }}">
+                  <img id="food-image" class="image" src="{{ food.picture }}" alt=""></a>
+            </h3></div>
+
+                <div id="foods-content">
+                <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:details' food_id=food.id %}">
+                    <h6 id="food-name">{{ food.name }}<br></h6></a>
+                </div>
+                <form action="{% url 'pbeurre:remove_fav' food_id=food.id %}" method="get" accept-charset="utf-8">
+                {% csrf_token %}
+                    <button class="btn-primary my-2 my-sm-0" type="submit" value="submit"><i class="far fa-trash-alt">&nbspSupprimer</i></button>
+              </form>
+                {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+            </div>
+            {% endfor %}
+            </div>
+
+            {% if paginate %}<br>
+              <nav aria-label="...">
+                <ul class="pager">
+                  {% if favoris.has_previous %}
+                      <a href="?page={{ favoris.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">&laquo;</a>
+                      {% else %}
+                     <span>&laquo;</span>
+                  {% endif %}
+                {% for i in favoris.paginator.page_range %}
+                 {% if favoris.number == i %}
+                        <span>{{ i }} <span class="sr-only">(current)</span></span>
+                      {% else %}
+                       <a href="?page={{ i }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">{{ i }}</a>
+                      {% endif %}
+                    {% endfor %}
+                  {% if favoris.has_next %}
+                      <a href="?page={{ favoris.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">&raquo;</a>
+                      {% else %}
+                     <span>&raquo;</span>
+                    {% endif %}
+                </ul>
+              </nav>
+            {% endif %}
+    {% endif %}
+</section>
+{% endblock%}

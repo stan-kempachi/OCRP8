@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <meta name="description" content="">
+  <meta name="author" content="">
+
+  <title>Pur Beurre</title>
+
+  {% load static %}
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="{% static 'pbeurre/img/logo_pur_beurre-favicon.png'%}">
+    <link rel="stylesheet" type="text/css" href="{% static 'pbeurre/css/icons.css'%}">
+
+  <!-- JQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.12.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+{#    <link href="{% static 'selectable/css/dj.selectable.css' %}" type="text/css" media="all" rel="stylesheet">#}
+{#    <script type="text/javascript" src="{% static 'pbeurre/selectable/js/jquery.dj.selectable.js' %}"></script>#}
+
+    <!-- Bootstrap core CSS -->
+  <link href="{% static 'pbeurre/vendor/bootstrap/css/bootstrap.min.css' %}" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="{% static 'pbeurre/vendor/fontawesome-free/css/all.min.css' %}" rel="stylesheet" type="text/css">
+  <link href='https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800' rel='stylesheet' type='text/css'>
+  <link href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic' rel='stylesheet' type='text/css'>
+
+  <!-- Plugin CSS -->
+  <link href="{% static 'pbeurre/vendor/magnific-popup/magnific-popup.css' %}" rel="stylesheet">
+
+  <!-- Custom styles for this template -->
+  <link href="{% static 'pbeurre/css/creative.css' %}" rel="stylesheet">
+  <link href="{% static 'pbeurre/css/style.css' %}" rel="stylesheet">
+
+</head>
+<body id="page-top">
+  <!-- Navigation -->
+  <nav class="navbar navbar-expand-lg navbar-light fixed-top py-3" id="mainNav">
+    <div class="container">
+      <a href="{% url 'pbeurre:index' %}"><img class="logoPurBeurre" src="{% static 'pbeurre/img/logo_pur_beurre.png' %}" alt="logoPurBeurre"></a>
+      <a class="navbar-brand js-scroll-trigger" href="{% url 'pbeurre:index' %}">&nbsp Pur Beurre</a>
+      <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse"
+              data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarResponsive">
+        <ul class="navbar-nav ml-auto my-2 my-lg-0">
+            <form class="form-inline" action="{% url 'pbeurre:search' %}" method="get" accept-charset="utf-8">
+                {% csrf_token %}
+                <div class="form-inline">
+                    <input id="champsearch" type="text"  aria-label="search" aria-describedby="submit"
+                           placeholder="Recherche" size="10" name="q">
+                    <button class="btn btn-outline-secondary my-2 my-sm-0" type="submit" value="{{ request.GET.q }}">Chercher</button>
+                </div>
+            </form>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger" href="{% url 'pbeurre:mon_compte' %}"><i class="fas fa-user"></i></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link js-scroll-trigger"  href="{% url 'pbeurre:favorite' %}">
+              <img class="carrot" src="{% static 'pbeurre/img/carrott.png' %}" alt="mes aliments" id="carot">
+            </a>
+          </li>
+          <li class="nav-item">
+            {% if user.is_authenticated %}
+            <a class="nav-link js-scroll-trigger" href="{% url 'pbeurre:logout' %}"><i class="fas fa-sign-out-alt"></i></a>
+              {% else %}
+            <a id="log" class="nav-link js-scroll-trigger" href="{% url 'pbeurre:login' %}"><i class="fas fa-sign-in-alt"></i> </a>
+              {% endif %}
+        </ul>
+      </div>
+    </div>
+  </nav>
+{% block content %}
+{% endblock %}
+
+  <footer class="bg-light py-5">
+    <div class="container">
+      <div class="small text-center text-muted">
+          <font style="vertical-align: inherit;">
+              <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:mention' %}">
+                  <font style="vertical-align: inherit;">
+                      Mentions legales
+                  </font></a>
+                  &middot; Stan Bruyere &middot; All rights reserved &middot;
+              <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:index' %}#contact ">
+                  <font style="vertical-align: inherit;">
+                    Contact
+                  </font></a>
+          </font>
+      </div>
+    </div>
+  </footer>
+</body>
+  <!-- Bootstrap core JavaScript -->
+  <script src="{% static 'pbeurre/vendor/jquery/jquery.min.js' %}"></script>
+  <script src="{% static 'pbeurre/vendor/bootstrap/js/bootstrap.bundle.min.js' %}"></script>
+
+  <!-- Plugin JavaScript -->
+  <script src="{% static 'pbeurre/vendor/jquery-easing/jquery.easing.min.js' %}"></script>
+  <script src="{% static 'pbeurre/vendor/scrollreveal/scrollreveal.min.js' %}"></script>
+  <script src="{% static 'pbeurre/vendor/magnific-popup/jquery.magnific-popup.min.js' %}"></script>
+
+  <!-- Custom scripts for this template -->
+  <script src="{% static 'pbeurre/js/creative.min.js' %}"></script>
+</html>

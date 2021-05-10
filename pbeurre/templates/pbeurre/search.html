@@ -1,0 +1,36 @@
+{% extends 'pbeurre/base.html' %}
+{% block content%}
+	{% load static %}
+    <section >
+        <div class="text-center">
+            {% for food in foods %}
+            <div id="backgroundProduct2">
+                <div class="headerImage mx-auto "style="padding-top: 5px">
+                   <div  id="background-food-image" class="bg-light py-5" style="background-image:url({{food.picture}}) ">
+                       <h2><a href="{% url 'pbeurre:details' food_id=food.id %}" class="text-white font-weight-bold mb-5" id="text-food">
+                                   {{ food.name }}</a></h2>
+                          <h2 class="text-white font-weight-bold mb-5 row text-center mx-auto" style="position:relative; right: 680px; bottom: 25px ">
+                               {% if food.nutri_score == "a" %}
+                                <div id="nutri_score_a" >{{ food.nutri_score|upper }}</div>
+                                {% endif %}
+                                {% if food.nutri_score == "b" %}
+                                <div id="nutri_score_b">{{ food.nutri_score|upper }}</div>
+                                {% endif %}
+                                {% if food.nutri_score == "c" %}
+                                <div id="nutri_score_c" >{{ food.nutri_score|upper }}</div>
+                                {% endif %}
+                                {% if food.nutri_score == "d" %}
+                                <div id="nutri_score_d">{{ food.nutri_score|upper }}</div>
+                                {% endif %}
+                                {% if food.nutri_score == "e" %}
+                                <div id="nutri_score_e">{{ food.nutri_score|upper }}</div>
+                                {% endif %}
+                           </h2>
+                   </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </section>
+{% include 'pbeurre/list.html' %}
+{% endblock%}

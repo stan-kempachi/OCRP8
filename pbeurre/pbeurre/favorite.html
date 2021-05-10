@@ -1,0 +1,28 @@
+{% extends 'pbeurre/base.html' %}
+{% block content%}
+	{% load static %}
+    <body>
+      <section>
+        <div id="backgroundProduct" class="row">
+         {% if messages %}
+            <ul class="messages">
+                {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+        {% for food in foods %}
+            <div   class="col-sm-12 col-md-12 col-lg-4 col-xl-4  headerImage text-center">
+                <div id="nutri_score">{{ food.nutri_score }}</div>
+                <a class="img-fluid" href="{{ food.picture }}">
+                  <img id="food-image" class="image" src="{{ food.picture }}" alt=""></a>
+                <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:details' food_id=food.id %}">
+                    <h6 id="food-name">{{ food.name }}<br></h6></a>
+                {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+            </div>
+        {% endfor %}
+        </div>
+      </section>
+    </body>
+{% endblock%}
+

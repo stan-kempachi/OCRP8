@@ -1,0 +1,45 @@
+{% extends 'pbeurre/base.html' %}
+
+{% block content%}
+
+  <section class="bg-primary" id="login">
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-12 col-md-12 col-lg-4 col-xl-4 mx-auto text-center login-form">
+          <form class="backgroundForm" method="post">
+            {% load widget_tweaks %}
+            {% csrf_token %}
+            <h5>Login</h5>
+
+{#              <div class="emailLoginForm">#}
+{#              {{ form.email|add_class:"loginInput"|attr:"placeholder:Email" }}#}
+{#            </div>#}
+{#            <div class="passwordLoginForm">#}
+{#              {{ form.password|add_class:"passwordInput"|attr:"placeholder:Password" }}#}
+{#            </div>#}
+
+              <div class="form-group {% if form.email.errors %}has-warning has-feedback{% endif %}">
+                <label for="{{ form.email.id_for_label }}" class="control-label">E-mail</label>
+                <!-- <input type="text" name="email" value="" id="email"> -->
+                {{ form.email }}
+              </div>
+
+              <div class="form-group {% if form.password.errors %}has-warning has-feedback{% endif %}">
+                <label for="{{ form.password.id_for_label }}" class="control-label">Password</label>
+                <!-- <input type="text" name="password" value="" id="password"> -->
+                {{ form.password }}
+              </div>
+
+            {% if messages %}
+                {% for message in messages %}
+                <p>{{ message }}</p>
+                {% endfor %}
+            {% endif %}
+            <input type="submit" value="Se Connecter" class="seConnecterButton">
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock%}

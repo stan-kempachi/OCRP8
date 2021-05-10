@@ -1,0 +1,47 @@
+<section>
+    <h4 class="text-center  mx-auto">Vous pouvez remplacer ce produit par :</h4>
+    {% if substitute|length_is:"0" %}
+    <div class="col-sm-12 col-md-12 headerImage text-center" id="no_result_text">
+      Miséricorde ! Nous n'avons trouvé aucun résultat à cette requête. <br>
+        Même pas de quoi se ronger la chique ! <br>
+      Lancez de nouveau votre ligne !
+    </div>
+        {% else %}
+            <div id="backgroundProduct" class="row">
+            {% for food in substitute %}
+            <div   class="col-sm-12 col-md-12 col-lg-4 col-xl-4  headerImage text-center">
+                <div id="nutri_score">{{ food.nutri_score }}</div>
+                <a class="img-fluid" href="{{ food.picture }}">
+                  <img id="food-image" class="image" src="{{ food.picture }}" alt=""></a>
+                <a class="text-center js-scroll-trigger" href="{% url 'pbeurre:details' food_id=food.id %}">
+                    <h6 id="food-name">{{ food.name }}<br></h6></a>
+
+                        <form action="{% url 'pbeurre:add_favorite' food_id=food.id %}" method="post">
+                            {% load widget_tweaks %}
+                             {% csrf_token %}
+                             <div class="form-group">
+                                <a id="favorite" class="text-center js-scroll-trigger"
+                                   type="url" href="{% url 'pbeurre:add_favorite' food_id=food.id %}">
+                                    <h6><i class="fas fa-save"></i> Sauvegarder</h6></a>
+                             </div>
+                         </form>
+
+                {% if forloop.counter|divisibleby:3 %}<div class="clearfix"></div>{% endif %}
+            </div>
+            {% endfor %}
+            </div>
+            {% if paginate %}
+              <div class="clearfix"></div>
+              <nav aria-label="...">
+                <ul class="pager">
+                  {% if substitute.has_previous %}
+                      <a href="?page={{ substitute.previous_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}">Précédent</a>
+                  {% endif %}
+                  {% if substitute.has_next %}
+                      <a href="?page={{ substitute.next_page_number }}{% for key, value in request.GET.items %}{% if key != 'page' %}&{{ key }}={{ value }}{% endif %}{% endfor %}" id='next'>Suivant</a>
+                  {% endif %}
+                </ul>
+              </nav>
+            {% endif %}
+    {% endif %}
+</section>
